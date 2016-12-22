@@ -18,7 +18,7 @@
 </td>
 </tr>
 </table>
-<p align = "center" > Not already signed in ? <a href = "http://localhost:7070/aai/signup.php"> Sign Up </a></p>
+<p align = "center" > Not already signed in ? <a href = "signup.php"> Sign Up </a></p>
 </body>
 </html>
 <?php
