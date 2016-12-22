@@ -42,7 +42,7 @@ while($row=mysql_fetch_array($run))
 </tbody>
 </table>
 <br><br><br><br>
-<p align="center"><a href="requestsupp.php">Request Item from Supplier</a><br>
+<p align="center"><a href="requestsupp.html">Request Item from Supplier</a><br>
 <a href="collectsupp.php">Collect Item from Supplier</a></p>
 </body>
 </html>
