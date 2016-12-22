@@ -23,6 +23,10 @@
 <option>Keyboard</option>
 <option>Mouse</option>
 <option>Monitor</option>
+<option>Fax Machine</option>
+<option>Projector</option>
+<option>Web Camera</option>
+<option>Others</option>
 </select>
 </td>
 </tr>
