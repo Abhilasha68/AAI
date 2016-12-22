@@ -1,6 +1,6 @@
 <html>
 <body bgcolor="White">
-<form action="first.php" method="POST">
+<form action="index.php" method="POST">
 <center>
 <img src="aai.jpg" width=600 height=300>
 </center>
