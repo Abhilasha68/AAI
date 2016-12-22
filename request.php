@@ -35,6 +35,10 @@
 <td><input type = "number" name="qty"></td>
 </tr>
 <tr>
+<td>Date : </td>
+<td><input type = "date" name="date"></td>
+</tr>
+<tr>
 <td><input type="submit" name="submit" value="Submit"></td>
 </tr>
 </form>
@@ -43,27 +47,26 @@
 </html>
 <?php
 $con=mysql_connect("localhost" , "root" , "");
-$email="shivanisharma1941995@gmail.com";
+$db=mysql_select_db("aai" , $con);
+session_start();
 if(isset($_POST["submit"]))
   {
   	$name=$_POST["name"];
-  	$emp_id=$_POST["emp_id"];
+  	$emp_id=$_SESSION["emp_id"];
   	$hardware=$_POST["hardware"];
   	$qty=$_POST["qty"];
-     if(($name=="") or ($emp_id=="") or ($qty<=0))
+    $date=$_POST["date"];
+
+     if(($name=="") or ($emp_id=="") or ($qty<=0)or ($date==""))
      {
      	echo "<script>alert('Please provide valid information!')</script>";
      }
      else
-     {
-    	$to = '$email';
-    	$email_subject = "Contact form request item : $name";
-    	$email_body = "You have received a new message. ".
-        " Here are the details:\n Name: $name \n ".
-        "Employee_ID: $emp_id \n Harware type : $hardware".
-         "Quantity: $qty";
-    	$headers = "From: $email\n";
-    	mail($to,$email_subject,$email_body,$headers);
+     {   $query="SELECT name from Employee Table Where Employee_Id=$emp_id";
+    	   $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$qty' , 'date')";
+         $run=mysql_query($query)or die(mysql_error());
+         echo "<script>alert('Thankyou ! ' /n ' Please check after one week')</script>";
+         echo "<script>window.open('client.php','_self')</script>";
      }
   }
 

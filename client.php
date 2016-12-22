@@ -3,6 +3,7 @@
 <?php
 session_start();
 $var=$_SESSION['emp_id'];
+$_SESSION['emp_id']=$var;
 $con=mysql_connect("localhost","root","");
 $db=mysql_select_db("aai",$con);
 $query = "select Name,Employee_ID,Location from employee_table where Employee_ID='$var'";
@@ -27,9 +28,9 @@ echo "<tr>
 ?>
 </table>
 <?php
-echo '<p align="center"><a href="http://localhost:7070/aai/request.php">Request an Item</a><br>
-<a href="http://localhost:7070/aai/issue.php">Raise an Issue</a><br>
-<a href="http://localhost:7070/aai/history.php">History of your issues</a><br></p>';
+echo '<p align="center"><a href="request.php">Request an Item</a><br>
+<a href="issue.php">Raise an Issue</a><br>
+<a href="history.php">History of your issues</a><br></p>';
 ?>
 </body>
 </html>

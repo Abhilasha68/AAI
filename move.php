@@ -33,7 +33,7 @@
 </tr>
 <tr>
 <td>Date : </td>
-<td><input type="number" name="date" ></td>
+<td><input type="date" name="date" ></td>
 </tr> 
 <tr> 
 <td><input id="button" type="submit" name="submit" value="submit"></td> 

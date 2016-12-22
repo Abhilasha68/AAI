@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td>Date : </td>
-<td><input type="varchar" name="date"></td>
+<td><input type="date" name="date"></td>
 </tr>
 <tr>
 <td>Issue : </td>
