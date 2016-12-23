@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2016 at 08:36 AM
+-- Generation Time: Dec 23, 2016 at 12:51 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -19,6 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `aai`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_items`
+--
+
+CREATE TABLE `employee_items` (
+  `Employee_ID` varchar(50) NOT NULL,
+  `HW_Type` varchar(50) NOT NULL,
+  `Model_No` varchar(50) NOT NULL,
+  `Item_No` varchar(50) NOT NULL,
+  `Quantity` int(50) NOT NULL,
+  `Date_of_All` date NOT NULL,
+  `Period_of_All` varchar(5) NOT NULL,
+  `Warranty_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -46,6 +63,22 @@ INSERT INTO `employee_table` (`Employee_ID`, `Name`, `Department`, `Email`, `Loc
 ('1003', 'Karan', 'Public Relations', 'karankashyap@gmail.com', 'PR, 3rd Floor, 32', 'client'),
 ('1004', 'Shreya', 'Human Resource', 'shreyasharma@gmail.com', 'HR, 2nd Floor, 41', 'client'),
 ('1005', 'Aakriti', 'Law', 'aakriti1989@gmail.com', 'Law, Groun Floor, 15', 'client');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hardware`
+--
+
+CREATE TABLE `hardware` (
+  `Hardware_Type` varchar(50) NOT NULL,
+  `Model_No` varchar(50) NOT NULL,
+  `Item_No` varchar(50) NOT NULL,
+  `Employee_ID` varchar(50) NOT NULL,
+  `Date_of_All` date NOT NULL,
+  `Period_of_All(in months)` varchar(5) NOT NULL,
+  `Warranty_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
