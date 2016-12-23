@@ -57,7 +57,7 @@
                                     <input class="form-control" placeholder="EmployeeID" name="emp_id" type="varchar" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="emp_pass" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -69,7 +69,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="signupUI.php" class="btn btn-lg btn-success btn-block">Not already signed in? SIGN UP</a>
+                <a href="signupUI.php" class="btn btn-lg btn-danger btn-block">Not already signed in? SIGN UP</a>
             </div>
         </div>
     </div>
