@@ -51,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Airports Authority of India</a>
+                <a class="navbar-brand">Airports Authority of India</a>
             </div>
             <!-- /.navbar-header -->
 
