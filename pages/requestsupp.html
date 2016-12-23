@@ -39,16 +39,6 @@
 </head>
 
 <body>
-<?php
-    session_start();
-    $var=$_SESSION['emp_id'];
-    $_SESSION['emp_id']=$var;
-    $con=mysql_connect("localhost","root","");
-    $db=mysql_select_db("aai",$con);
-    $query = "select Name,Employee_ID,Location from employee_table where Employee_ID='$var'";
-    $run=mysql_query($query);
-    $row=mysql_fetch_array($run);
- ?>
 
     <div id="wrapper">
 
@@ -61,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Airports Authority of India</a>
+                <a class="navbar-brand">Airports Authority of India</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -163,137 +153,89 @@
                             <a href="requestsupp.html"><i class="fa fa-table fa-fw"></i>Request Item</a>
                         </li>
                         <li>
-                            <a href="collectsupp.php"><i class="fa fa-table fa-fw"></i> Raise and issue</a>
+                            <a href="collectsupp.php"><i class="fa fa-table fa-fw"></i> Collect Item</a>
                         </li>
                         <li>
                             <a href="collectsupp.php"><i class="fa fa-table fa-fw"></i> History of issues</a>
                         </li>
+                      
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
 
-
-       <div id="page-wrapper">
-       <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+        <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-6 col-md-offset-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Client Details
-                        </div>
-                        <div class="panel-body">
-                            
-
-                        <div class="col-lg-8 col-md-offset-2">
-                    <!--<div class="panel panel-default">-->
-                        
-                        <!-- /.panel-heading -->
-                        <!--<div class="panel-body">-->
-                            <div class="table-responsive">
-
-                                <table class="table">
-                                   <?php
-                                        echo "<tr>
-                                        <td><strong>Name:</strong></td>
-                                        <td>{$row['Name']}</td>
-                                        </tr>
-                                        <tr>
-                                        <td><strong>Employee ID:</strong></td>
-                                        <td>{$row['Employee_ID']}</td>
-                                        </tr>
-                                        <tr>
-                                        <td><strong>Location:</strong></td>
-                                        <td>{$row['Location']}</td>
-                                        </tr>"
-                                    ?>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                        <div class="panel-footer">
-
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-           <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">My Items</h1>
+                    <h1 class="page-header">Request an Item</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Items in IT Store
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <?php
-                                            $con=mysql_connect("localhost","root","");
-                                            $db=mysql_select_db("aai",$con);
-                                            $query="select * from it_store";
-                                            $run=mysql_query($query);
-                                        ?>
-                                <thead>
-                                    <tr>
-                                     <th>Supplier_Name</th>
-                                     <th>Supplier_ID</th>
-                                     <th>HW_Type</th>
-                                     <th>Quantity</th>
-                                     <th>Balance Quantity</th>
-                                     <th>Date</th>
-                                     <th>POI</th>
-                                     <th>Receipt</th>
-                                     <th>Model_No</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        while($row=mysql_fetch_array($run))
-                                        {
-                                            echo "<tr>
-                                                <td>{$row['Supplier_Name']}</td>
-                                                <td>{$row['Supplier_ID']}</td>
-                                                <td>{$row['HW_Type']}</td>
-                                                <td>{$row['Quantity']}</td>
-                                                <td>{$row['Balance Quantity']}</td>
-                                                <td>{$row['Date']}</td>
-                                                <td>{$row['POI']}</td>
-                                                <td>{$row['Receipt']}</td>
-                                                <td>{$row['Model_No']}</td>
-                                                </tr>\n";
-                                        }
-                                        ?>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Purchase Order</h3>
                     </div>
+                    <div class="panel-body">
+                        <form role="form" action="requestsupplier.php" method="POST">
+                            <fieldset>
+                                <div class="form-group">
+                                <label>Supplier Name</label>
+                                    <input class="form-control" placeholder="Name" type="text" name="supp_name"  maxlength="100" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Supplier Id</label>
+                                    <input class="form-control" placeholder="Supplier id" type="number" name="supp_id" maxlength="100" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Hardware Type</label>
+                                    <input class="form-control" placeholder="Hardware Type" type='text' name="hw_type" id='hw_type' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Hardware Model</label>
+                                    <input class="form-control" placeholder="Hardware Model" type="varchar" name='hw_model' maxlength="50" autofocus>
+                                
+                                
+                                 <div class="form-group">
+                                 <label>Quantity</label>
+                                    <input class="form-control" placeholder="Quantity" type="number" name='qty' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                 <label>Date</label>
+                                    <input class="form-control" placeholder="Date" type='date' name='date' maxlength="50" autofocus>
+                                </div>
+
+
+                                <div class="form-group">
+                                 <label>PO Id</label>
+                                    <input class="form-control" placeholder="PO id" type="number" name='poi' maxlength="50" autofocus>
+                                </div>
+                                
+                                <input class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Submit">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-             
+            <!-- /.row -->
         </div>
+        <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
