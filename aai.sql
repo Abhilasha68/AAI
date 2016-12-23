@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2016 at 09:33 AM
+-- Generation Time: Dec 23, 2016 at 08:36 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -46,6 +46,56 @@ INSERT INTO `employee_table` (`Employee_ID`, `Name`, `Department`, `Email`, `Loc
 ('1003', 'Karan', 'Public Relations', 'karankashyap@gmail.com', 'PR, 3rd Floor, 32', 'client'),
 ('1004', 'Shreya', 'Human Resource', 'shreyasharma@gmail.com', 'HR, 2nd Floor, 41', 'client'),
 ('1005', 'Aakriti', 'Law', 'aakriti1989@gmail.com', 'Law, Groun Floor, 15', 'client');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `issue`
+--
+
+CREATE TABLE `issue` (
+  `Name` varchar(50) NOT NULL,
+  `Employee_Id` varchar(50) NOT NULL,
+  `Hardware_Type` varchar(50) NOT NULL,
+  `Model_no` varchar(50) NOT NULL,
+  `Item_no` varchar(50) NOT NULL,
+  `Date` date NOT NULL,
+  `Issue` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `issue`
+--
+
+INSERT INTO `issue` (`Name`, `Employee_Id`, `Hardware_Type`, `Model_no`, `Item_no`, `Date`, `Issue`) VALUES
+('karan', '1003', 'Computer', '65465', '21321', '0000-00-00', 'vgftycdix');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `it_store`
+--
+
+CREATE TABLE `it_store` (
+  `Supplier_Name` varchar(50) NOT NULL,
+  `Supplier_ID` int(50) NOT NULL,
+  `HW_Type` varchar(50) NOT NULL,
+  `Quantity` int(50) NOT NULL,
+  `Balance Quantity` int(50) NOT NULL,
+  `Date` date NOT NULL,
+  `POI` int(50) NOT NULL,
+  `Receipt` int(50) NOT NULL,
+  `Model_No` int(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `it_store`
+--
+
+INSERT INTO `it_store` (`Supplier_Name`, `Supplier_ID`, `HW_Type`, `Quantity`, `Balance Quantity`, `Date`, `POI`, `Receipt`, `Model_No`) VALUES
+('Agmatel Pvt. Ltd.', 7001, 'Monitor', 150, 150, '2016-12-21', 80001, 90001, 120050),
+('Frontline Pvt. Ltd.', 7002, 'Keyboard', 200, 200, '2016-12-14', 80002, 90002, 120051),
+('Boron Pvt. Ltd.', 7003, 'Mouse', 200, 200, '2016-12-20', 80003, 90003, 120052);
 
 -- --------------------------------------------------------
 
@@ -97,6 +147,27 @@ INSERT INTO `pending_reg` (`Name`, `E_Mail`, `Dept`, `Location`, `Employee_ID`, 
 ('Ashok Kumar', 'ashujaisia@gmail.com', 'Architecture Planning', 'AP,Ground Floor,56', '1008', '1008', 'client'),
 ('Abhilasha', 'abhilashasingh1996@gmail.com', 'Information Technology', 'it , 1st floor , 23', '1009', 'abhilasha', 'client');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request`
+--
+
+CREATE TABLE `request` (
+  `Name` varchar(50) NOT NULL,
+  `Employee_Id` varchar(50) NOT NULL,
+  `Hardware Type` varchar(50) NOT NULL,
+  `Qty` int(50) NOT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`Name`, `Employee_Id`, `Hardware Type`, `Qty`, `Date`) VALUES
+('shreya', '1004', 'Computer', 2, '0000-00-00');
+
 --
 -- Indexes for dumped tables
 --
@@ -107,6 +178,18 @@ INSERT INTO `pending_reg` (`Name`, `E_Mail`, `Dept`, `Location`, `Employee_ID`, 
 ALTER TABLE `employee_table`
   ADD PRIMARY KEY (`Employee_ID`),
   ADD UNIQUE KEY `Email` (`Email`);
+
+--
+-- Indexes for table `it_store`
+--
+ALTER TABLE `it_store`
+  ADD PRIMARY KEY (`POI`);
+
+--
+-- Indexes for table `login_table`
+--
+ALTER TABLE `login_table`
+  ADD PRIMARY KEY (`Employee_ID`);
 
 --
 -- Indexes for table `pending_reg`

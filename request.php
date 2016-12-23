@@ -36,7 +36,7 @@
 </tr>
 <tr>
 <td>Date : </td>
-<td><input type = "date" name="date"></td>
+<td><input type = 'date' name="date"></td>
 </tr>
 <tr>
 <td><input type="submit" name="submit" value="Submit"></td>
@@ -62,10 +62,11 @@ if(isset($_POST["submit"]))
      	echo "<script>alert('Please provide valid information!')</script>";
      }
      else
-     {   $query="SELECT name from Employee Table Where Employee_Id=$emp_id";
-    	   $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$qty' , 'date')";
+     {   $query="SELECT Name from employee_table Where Employee_ID=$emp_id";
+    	   $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$qty' , '$date')";
          $run=mysql_query($query)or die(mysql_error());
-         echo "<script>alert('Thankyou ! ' /n ' Please check after one week')</script>";
+         $run1=mysql_query($query1) or die (mysql_error());
+         echo "<script>alert('Thankyou ! Please check after one week')</script>";
          echo "<script>window.open('client.php','_self')</script>";
      }
   }

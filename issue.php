@@ -55,6 +55,8 @@
 </html>
 <?php
 $con=mysql_connect("localhost", "root" , "");
+$db=mysql_select_db("aai",$con);
+session_start();
 if(isset($_POST["submit"]))
    {
    	 $name=$_POST["name"];
@@ -70,11 +72,11 @@ if(isset($_POST["submit"]))
    	 }
    	 else
      {
-    	$query="SELECT name from Employee Table Where Employee_Id=$emp_id";
-         $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$model' , '$item', '$date','$issue')";
+    	$query="SELECT Name from employee_table Where Employee_ID=$emp_id";
+         $query1= "INSERT INTO issue VALUES('$name' , '$emp_id' , '$hardware' , '$model' , '$item', '$date','$issue')";
          $run=mysql_query($query)or die(mysql_error());
          $run1=mysql_query($query1) or die(mysql_error());
-         echo "<script>alert('Thankyou ! ' /n ' Please check after one week')</script>";
+         echo "<script>alert('Thankyou !  Please check after one week')</script>";
          echo "<script>window.open('client.php','_self')</script>";
      }
    }
