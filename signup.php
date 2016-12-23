@@ -90,7 +90,7 @@ if(isset($_POST['Submit']))
 	{  $query= "INSERT INTO pending_reg VALUES('$name' , '$email' , '$dept' , '$location' , '$emp_id' , '$emp_pass' , '$type' )";
         $run= mysql_query($query) or die(mysql_error());
 		echo"<script>alert('please check in after 4 days')</script>";
-		echo "<script>window.open('first.php','_self')</script>";
+		echo "<script>window.open('index.php','_self')</script>";
     }
 	
 }
