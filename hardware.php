@@ -7,10 +7,9 @@
 <?php
 $con=mysql_connect("localhost","root",'');
 $db=mysql_select_db("aai",$con);
-session_start();
-$var=$_SESSION['HW_Type'];
-$query="select Model_No,Item_No,Employee_ID,Date_of_All,Period_of_All,Warranty_Date from hardware where Hardware_Type='$HW_Type'";
-$run=mysql_query($query);
+$var=$_GET['HW_Type'];
+$query="select Model_No,Item_No,Employee_ID,Date_of_All,Period_of_All,Warranty_Date from hardware where Hardware_Type='$var'";
+$run=mysql_query($query) or die(mysql_error());
 ?>
 <thead>
 <tr>

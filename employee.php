@@ -12,7 +12,7 @@ $query2="select Name from Employee_Items where Employee_ID='$emp_id'";
 $run1=mysql_query($query1);
 $run2=mysql_query($query2);
 $row2=mysql_fetch_array($run2);
-echo "<h3>Name: {$row2['Name']}</h3>";
+echo "<h3 align='center'>Name: {$row2['Name']}</h3>";
 ?>
 <table border='1' align='center'>
 <thead>
