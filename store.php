@@ -5,6 +5,7 @@
 <?php
 $con=mysql_connect("localhost","root","");
 $db=mysql_select_db("aai",$con);
+$value='';
 $query="select * from it_store";
 $run=mysql_query($query);
 ?>
@@ -29,7 +30,7 @@ while($row=mysql_fetch_array($run))
 	echo "<tr>
 		<td>{$row['Supplier_Name']}</td>
 		<td>{$row['Supplier_ID']}</td>
-		<td><a href='hardware.php?HW_Type'>{$row['HW_Type']}</a></td>
+		<td><a href='hardware.php?value=$row[HW_Type]'>{$row['HW_Type']}</a></td>
 		<td>{$row['Quantity']}</td>
 		<td>{$row['Balance Quantity']}</td>
 		<td>{$row['Date']}</td>

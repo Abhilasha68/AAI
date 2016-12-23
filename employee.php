@@ -4,13 +4,13 @@
 </head>
 <body>
 <?php
+$emp_id=$_GET['val'];
 $con=mysql_connect("localhost","root","");
 $db=mysql_select_db("aai",$con);
-$emp_id=$_GET['Employee_ID'];
 $query1="select HW_Type,Model_No,Item_No,Quantity,Date_of_All from employee_items where Employee_ID='$emp_id'";
-$query2="select Name from Employee_Items where Employee_ID='$emp_id'";
-$run1=mysql_query($query1);
-$run2=mysql_query($query2);
+$query2="select Name from employee_table where Employee_ID='$emp_id'";
+$run1=mysql_query($query1) or die(mysql_error());
+$run2=mysql_query($query2) or die(mysql_error());
 $row2=mysql_fetch_array($run2);
 echo "<h3 align='center'>Name: {$row2['Name']}</h3>";
 ?>

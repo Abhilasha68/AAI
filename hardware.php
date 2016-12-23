@@ -5,11 +5,12 @@
 <body>
 <table align='center' border='1'>
 <?php
+$var=$_GET['value'];
 $con=mysql_connect("localhost","root",'');
 $db=mysql_select_db("aai",$con);
-$var=$_GET['HW_Type'];
 $query="select Model_No,Item_No,Employee_ID,Date_of_All,Period_of_All,Warranty_Date from hardware where Hardware_Type='$var'";
 $run=mysql_query($query) or die(mysql_error());
+$val='';
 ?>
 <thead>
 <tr>
@@ -28,7 +29,7 @@ while($row=mysql_fetch_array($run))
 	echo "<tr>
 		<td>{$row['Model_No']}</td>
 		<td>{$row['Item_No']}</td>
-		<td><a href='employee.php?Employee_ID'>{$row['Employee_ID']}</a></td>
+		<td><a href='employee.php?val=$row[Employee_ID]'>{$row['Employee_ID']}</a></td>
 		<td>{$row['Date_of_All']}</td>
 		<td>{$row['Period_of_All']}</td>
 		<td>{$row['Warranty_Date']}</td>
