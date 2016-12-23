@@ -23,6 +23,10 @@
 <option>Keyboard</option>
 <option>Mouse</option>
 <option>Monitor</option>
+<option>Fax Machine</option>
+<option>Projector</option>
+<option>Web Camera</option>
+<option>Others</option>
 </select>
 </td>
 </tr>
@@ -54,24 +58,24 @@ $con=mysql_connect("localhost", "root" , "");
 if(isset($_POST["submit"]))
    {
    	 $name=$_POST["name"];
-   	 $emp_id=$_POST["emp_id"];
+   	 $emp_id=$_SESSION["emp_id"];
    	 $hardware=$_POST["hardware"];
-   	 $model=$_POST["Item_no"];
+   	 $model=$_POST["model"];
+     $item=$_POST["Item_no"];
    	 $date=$_POST["date"];
-   	 if(($name=="") or ($emp_id=="") or ($model=="") or ($model=="") or ($date==""))
+     $issue=$_POST["issue"];
+   	 if(($name=="") or ($emp_id=="") or ($model=="") or ($item=="") or ($date==""))
    	 {
    	 	echo "<script>alert('Please provide the information !')</script>";
    	 }
    	 else
      {
-    	$to = '$email';
-    	$email_subject = "Contact form request item : $name";
-    	$email_body = "You have received a new message. ".
-        " Here are the details:\n Name: $name \n ".
-        "Employee_ID: $emp_id \n Harware type : $hardware".
-         "Quantity: $qty";
-    	$headers = "From: $email\n";
-    	mail($to,$email_subject,$email_body,$headers);
+    	$query="SELECT name from Employee Table Where Employee_Id=$emp_id";
+         $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$model' , '$item', '$date','$issue')";
+         $run=mysql_query($query)or die(mysql_error());
+         $run1=mysql_query($query1) or die(mysql_error());
+         echo "<script>alert('Thankyou ! ' /n ' Please check after one week')</script>";
+         echo "<script>window.open('client.php','_self')</script>";
      }
    }
 ?>
