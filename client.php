@@ -40,18 +40,21 @@ echo "<tr>
 </thead>
 <tbody>
 <?php
-$query1="select HW_Type,Model_No,Item_No,Quantity,Date_of_All,Period_of_All,Warranty_Date from employee_items where Employee_ID= '$var'";
-$run1=mysql_query($query1);
+$query1="select HW_Type,Model_No,Item_No,Quantity,Date_of_All,Period_of_All,Warranty_Date from employee_items where Employee_ID='$var'";
+$run1=mysql_query($query1) or die(mysql_error());
 while($row1=mysql_fetch_array($run1))
 {
 	echo "<tr>
-		<td>{$row['HW_Type']}</td>
-		<td>{$row['Model_No']}</td>
-		<td>{$row['Item_No']}</td>
-		<td>{$row['Quantity']}</td>
-		<td>{$row['Date_of_All']}</td>
-		<td>{$row['Period_of_All']}</td>
-		<td>{$row['Warranty_Date']}</td>
+		<td>{$row1['HW_Type']}</td>
+		<td>{$row1['Model_No']}</td>
+		<td>{$row1['Item_No']}</td>
+		<td>{$row1['Quantity']}</td>
+		<td>{$row1['Date_of_All']}</td>
+		<td>{$row1['Period_of_All']}</td>
+		<td>{$row1['Warranty_Date']}</td>
+		<td><input type='button' name='reallocate' value='Reallocate'>
+		<input type='button' name='move' value='Move'>
+		<input type='button' name='return' value='Return'></td>
 		</tr>";
 }
 ?>
@@ -61,6 +64,12 @@ while($row1=mysql_fetch_array($run1))
 echo '<p align="center"><a href="request.php">Request an Item</a><br>
 <a href="issue.php">Raise an Issue</a><br>
 <a href="history.php">History of your issues</a><br></p>';
+if (isset($_POST['reallocate']))
+	{echo "<script>window.open('reallocate.php','_self')</script>";}
+else if (isset($_POST['move']))
+	{echo "<script>window.open('move.php','_self')</script>";}
+else if (isset($_POST['return']))
+	{echo "<script>window.open('return.php','_self')</script>";}
 ?>
 </body>
 </html>

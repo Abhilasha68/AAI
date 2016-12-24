@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>IT STORE</title>
+    <title>EMPLOYEE</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -264,13 +264,13 @@
                                         while($row1=mysql_fetch_array($run1))
                                         {
                                             echo "<tr>
-                                                <td>{$row['HW_Type']}</td>
-                                                <td>{$row['Model_No']}</td>
-                                                <td>{$row['Item_No']}</td>
-                                                <td>{$row['Quantity']}</td>
-                                                <td>{$row['Date_of_All']}</td>
-                                                <td>{$row['Period_of_All']}</td>
-                                                <td>{$row['Warranty_Date']}</td>
+                                                <td>{$row1['HW_Type']}</td>
+                                                <td>{$row1['Model_No']}</td>
+                                                <td>{$row1['Item_No']}</td>
+                                                <td>{$row1['Quantity']}</td>
+                                                <td>{$row1['Date_of_All']}</td>
+                                                <td>{$row1['Period_of_All']}</td>
+                                                <td>{$row1['Warranty_Date']}</td>
                                                 </tr>";
                                         }
                                         ?>
