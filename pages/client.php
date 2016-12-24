@@ -246,37 +246,32 @@
                                         <?php
                                             $con=mysql_connect("localhost","root","");
                                             $db=mysql_select_db("aai",$con);
-                                            $query="select * from it_store";
-                                            $run=mysql_query($query);
+                                            $query1="select HW_Type,Model_No,Item_No,Quantity,Date_of_All,Period_of_All,Warranty_Date from employee_items where Employee_ID= '$var'";
+                                            $run1=mysql_query($query1);
                                         ?>
                                 <thead>
-                                    <tr>
-                                     <th>Supplier_Name</th>
-                                     <th>Supplier_ID</th>
-                                     <th>HW_Type</th>
-                                     <th>Quantity</th>
-                                     <th>Balance Quantity</th>
-                                     <th>Date</th>
-                                     <th>POI</th>
-                                     <th>Receipt</th>
-                                     <th>Model_No</th>
-                                    </tr>
+                                <th><strong>Hardware Type</strong></th>
+                                <th><strong>Model No</strong></th>
+                                <th><strong>Item No</strong></th>
+                                <th><strong>Quantity</strong></th>
+                                <th><strong>Date Of Allocation</strong></th>
+                                <th><strong>Period Of Allocation</strong></th>
+                                <th><strong>Warranty Date</strong></th>
+                                <th><strong></strong></th>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        while($row=mysql_fetch_array($run))
+                                        while($row1=mysql_fetch_array($run1))
                                         {
                                             echo "<tr>
-                                                <td>{$row['Supplier_Name']}</td>
-                                                <td>{$row['Supplier_ID']}</td>
                                                 <td>{$row['HW_Type']}</td>
-                                                <td>{$row['Quantity']}</td>
-                                                <td>{$row['Balance Quantity']}</td>
-                                                <td>{$row['Date']}</td>
-                                                <td>{$row['POI']}</td>
-                                                <td>{$row['Receipt']}</td>
                                                 <td>{$row['Model_No']}</td>
-                                                </tr>\n";
+                                                <td>{$row['Item_No']}</td>
+                                                <td>{$row['Quantity']}</td>
+                                                <td>{$row['Date_of_All']}</td>
+                                                <td>{$row['Period_of_All']}</td>
+                                                <td>{$row['Warranty_Date']}</td>
+                                                </tr>";
                                         }
                                         ?>
                                 </tbody>
