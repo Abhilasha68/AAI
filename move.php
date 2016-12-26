@@ -44,29 +44,23 @@
 </html>
 <?php
    $con=mysql_connect("localhost" , "root" , "");
+   $db=mysql_select_db("aai",$con);
    if(isset($_POST["submit"]))
-   {
+   {    $var1=$_GET['var'];
    	  $name=$_POST["name"];
-   	  $emp_id=$_POST["emp_id"];
+   	  $emp_id=$var1;
    	  $obuilding=$_POST["obuilding"];
    	  $oseat_no=$_POST["oseat_no"];
    	  $nbuilding=$_POST["nbuilding"];
    	  $nseat_no=$_POST["nseat_no"];
    	  $date=$_POST["date"];
-   	  if(($name=="") or ($emp_id=="") or ($obuilding=="") or ($oseat_no=="")or($nbuilding=="") or ($nseat_no=="") or ($date==""));
-   	     { echo  "<script>alert('Please provide all the information !')</script>";   	  
-   	      }
-   	      else
-     {
-    	$to = '$email';
-    	$email_subject = "Contact form request item : $name";
-    	$email_body = "You have received a new message. ".
-        " Here are the details:\n Name: $name \n ".
-        "Employee_ID: $emp_id \n Harware type : $hardware".
-         "Quantity: $qty";
-    	$headers = "From: $email\n";
-    	mail($to,$email_subject,$email_body,$headers);
-     }
-
+   	  if(($name=="") or ($emp_id=="") or ($obuilding=="") or ($oseat_no=="")or($nbuilding=="") or ($nseat_no=="") or ($date==""))
+   	     { echo  "<script>alert('Please provide all the information !')</script>";}
+   	  else
+          {
+            $query="insert into move values ('$emp_id','$name','$obuilding','$oseat_no','$nbuilding','$nseat_no','$date')";
+            $run=mysql_query($query) or die(mysql_error());
+            echo "<script>window.open('client.php','_self')</script>";
+          }
    }
 ?>

@@ -2,7 +2,7 @@
 <body>
 <form>
 <fieldset>
-<legend align='center' >Allocation Form</legend>
+<legend align='center' >Reallocation Form</legend>
 <table align='center'>
 <tr>
 <td> Employee Id : </td>
@@ -67,21 +67,27 @@
 <?php
 $con=mysql_connect("localhost" , "root" , "");
 $db=mysql_select_db("aai" , $con);
+session_start();
 if(isset($_POST["submit"]))
   {
-  	$emp_id=$_POST["emp_id"];
+  	$emp_id=$_GET["var"];
   	$hardware=$_POST["hardware"];
   	$model=$_POST["model"];
   	$item=$_POST["item"];
   	$qty=$_POST["qty"];
   	$from=$_POST["from"];
   	$to=$_POST["to"];
-  	$warranty=$_POST["warranty"];
+  	$warranty=$_POST['warranty'];
     $date=$_POST["date"];
 
      if(($hardware=="") or ($emp_id=="") or ($qty<=0)or ($date=="") or ($model=="") or ($item=="") or ($from=="") or ($to=="")) 
      {
-      echo "<script>alert('Please provide valid information!')</script>";
+     	echo "<script>alert('Please provide valid information!')</script>";
+
+     }
+     else
+     {
+         echo "<script>window.open('client.php' , '_self')</script>";
      }
  }
 ?>

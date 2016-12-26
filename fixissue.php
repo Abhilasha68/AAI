@@ -26,8 +26,6 @@
  </thead>
  <tbody>
  <?php
-  
- 
  while($row=mysql_fetch_array($run))
  	{  echo  "<tr>
  			<td>{$row['Employee_Id']}</td>
@@ -35,9 +33,16 @@
       <td>{$row['Hardware_Type']}</td>
 			<td>{$row['Model_no']}</td>
 			<td>{$row['Item_no']}</a></td>
-			<td>{$row['Date']}</td>
 			<td>{$row['Issue']}</td>
-			<td> <a href=''> Fix / <a href='escalate.php?value1=$row[Item_no]'> Escalate</a> </td>
+			<td>{$row['Date']}</td>
+			<td><a href='<?php 
+        if(isset($_POST[\'fix']))
+      { $vara=$row[\"Item_no\"];
+        $query1=\"delete from issue where Item_no=$vara\";
+        $run1=mysql_query($query1) or die(mysql_error()); 
+      }
+      ?>'><input type='submit' name='fix' value='Fix'></a>
+      <a href='escalate.php?value1=$row[Item_no]'><input type='submit' name='escalate' value='Escalate'</a> </td>
 			</tr>\n";
 		}
  ?>
