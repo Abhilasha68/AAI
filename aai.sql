@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2016 at 12:03 PM
+-- Generation Time: Dec 26, 2016 at 12:24 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -115,7 +115,6 @@ CREATE TABLE `issue` (
 --
 
 INSERT INTO `issue` (`Name`, `Employee_Id`, `Hardware_Type`, `Model_no`, `Item_no`, `Date`, `Issue`) VALUES
-('shreya', '1004', 'CPU', '0255', '12', '2016-12-28', 'not working '),
 ('karan', '1003', 'Computer', '65465', '21321', '0000-00-00', 'vgftycdix');
 
 -- --------------------------------------------------------

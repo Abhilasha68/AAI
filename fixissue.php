@@ -35,13 +35,7 @@
 			<td>{$row['Item_no']}</a></td>
 			<td>{$row['Issue']}</td>
 			<td>{$row['Date']}</td>
-			<td><a href='<?php 
-        if(isset($_POST[\'fix']))
-      { $vara=$row[\"Item_no\"];
-        $query1=\"delete from issue where Item_no=$vara\";
-        $run1=mysql_query($query1) or die(mysql_error()); 
-      }
-      ?>'><input type='submit' name='fix' value='Fix'></a>
+			<td><a href='fix.php?value1=$row[Item_no]'><input type='submit' name='fix' value='Fix'></a>
       <a href='escalate.php?value1=$row[Item_no]'><input type='submit' name='escalate' value='Escalate'</a> </td>
 			</tr>\n";
 		}
