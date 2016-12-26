@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2016 at 12:51 PM
+-- Generation Time: Dec 26, 2016 at 12:03 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -36,6 +36,13 @@ CREATE TABLE `employee_items` (
   `Period_of_All` varchar(5) NOT NULL,
   `Warranty_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee_items`
+--
+
+INSERT INTO `employee_items` (`Employee_ID`, `HW_Type`, `Model_No`, `Item_No`, `Quantity`, `Date_of_All`, `Period_of_All`, `Warranty_Date`) VALUES
+('1003', 'Monitor', '654654', '87897', 1, '2016-12-12', '2', '2017-03-17');
 
 -- --------------------------------------------------------
 
@@ -76,9 +83,16 @@ CREATE TABLE `hardware` (
   `Item_No` varchar(50) NOT NULL,
   `Employee_ID` varchar(50) NOT NULL,
   `Date_of_All` date NOT NULL,
-  `Period_of_All(in months)` varchar(5) NOT NULL,
+  `Period_of_All` varchar(5) NOT NULL,
   `Warranty_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hardware`
+--
+
+INSERT INTO `hardware` (`Hardware_Type`, `Model_No`, `Item_No`, `Employee_ID`, `Date_of_All`, `Period_of_All`, `Warranty_Date`) VALUES
+('Monitor', '14654654', '12112', '1003', '2016-12-12', '2', '2017-01-28');
 
 -- --------------------------------------------------------
 
@@ -101,6 +115,7 @@ CREATE TABLE `issue` (
 --
 
 INSERT INTO `issue` (`Name`, `Employee_Id`, `Hardware_Type`, `Model_no`, `Item_no`, `Date`, `Issue`) VALUES
+('shreya', '1004', 'CPU', '0255', '12', '2016-12-28', 'not working '),
 ('karan', '1003', 'Computer', '65465', '21321', '0000-00-00', 'vgftycdix');
 
 -- --------------------------------------------------------
@@ -153,6 +168,29 @@ INSERT INTO `login_table` (`Employee_ID`, `Password`, `Type`) VALUES
 (1003, '1003', 'client'),
 (1004, '1004', 'client'),
 (1005, '1005', 'client');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `move`
+--
+
+CREATE TABLE `move` (
+  `Employee_ID` varchar(50) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Old_Building` varchar(50) NOT NULL,
+  `Old_Seat` varchar(50) NOT NULL,
+  `New_Building` varchar(50) NOT NULL,
+  `New_Seat` varchar(50) NOT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `move`
+--
+
+INSERT INTO `move` (`Employee_ID`, `Name`, `Old_Building`, `Old_Seat`, `New_Building`, `New_Seat`, `Date`) VALUES
+('1003', 'karan', '2', '3', '2', '8', '2016-12-13');
 
 -- --------------------------------------------------------
 
@@ -213,6 +251,12 @@ ALTER TABLE `employee_table`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
+-- Indexes for table `issue`
+--
+ALTER TABLE `issue`
+  ADD PRIMARY KEY (`Item_no`);
+
+--
 -- Indexes for table `it_store`
 --
 ALTER TABLE `it_store`
@@ -222,6 +266,12 @@ ALTER TABLE `it_store`
 -- Indexes for table `login_table`
 --
 ALTER TABLE `login_table`
+  ADD PRIMARY KEY (`Employee_ID`);
+
+--
+-- Indexes for table `move`
+--
+ALTER TABLE `move`
   ADD PRIMARY KEY (`Employee_ID`);
 
 --
