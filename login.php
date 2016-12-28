@@ -39,18 +39,14 @@ if (isset($_POST['login']))
 	{echo '<script>alert("Enter Password")</script>';}
 	else
 	{
-	$query1="select * from login_table where Employee_ID='$emp_id' AND Password='$emp_pass' AND Type='client'";
+	$query1="select * from login_table where Employee_ID='$emp_id' AND Password='$emp_pass'";
 	$query2="select * from login_table where Employee_ID='$emp_id' AND Password='$emp_pass' AND Type='admin'";
-	$query3="select * from login_table where Employee_ID='$emp_id' AND Password='$emp_pass' AND Type='inventory'";
 	$run1=mysql_query($query1) or die (mysql_error());
 	$run2=mysql_query($query2) or die (mysql_error());
-	$run3=mysql_query($query3) or die (mysql_error());
-	if(mysql_num_rows($run1)>0)
+	if(mysql_num_rows($run2)>0)
+		{echo "<script>window.open('admin.html','_self')</script>";}
+	else if(mysql_num_rows($run1)>0)
 		{echo "<script>window.open('client.php','_self')</script>";}
-	else if(mysql_num_rows($run2)>0)
-		{echo "<script>window.open('admin.php','_self')</script>";}
-	else if(mysql_num_rows($run3)>0)
-		{echo "<script>window.open('store.php','_self')</script>";}
 	else
 		{echo '<script>alert("Invalid EmployeeID and Password")</script>';}
 	}

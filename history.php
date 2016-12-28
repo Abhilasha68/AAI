@@ -39,5 +39,8 @@ while($row=mysql_fetch_array($run))
 </tbody>
 </table>
 </fieldset>
+<br><br><br><br><br>
+<p align="center"><a href="client.php"><input type="submit" name="home" value="Home"></a></p>
 </body>
 </html>
+=

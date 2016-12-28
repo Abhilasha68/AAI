@@ -38,19 +38,12 @@
 <td><input type='number' name='qty'></td>
 </tr>
 <tr>
-<td>Period od Allocation</td>
+<td>Period od Allocation : </td>
+<td><input type='varchar' name='period'></td>
 </tr>
 <tr>
-<td>From:</td>
-<td><input type='date' name='from'></td>
-</tr>
-<tr>
-<td>to:</td>
-<td><input type='date' name='to'></td>
-</tr>
-<tr>
-<td>Warranty Period : </td>
-<td><input type='number' name='warranty'></td>
+<td>Warranty Date : </td>
+<td><input type='date' name='warranty'></td>
 </tr>
 <tr>
 <td>Date</td>
@@ -62,6 +55,8 @@
 </table>
 </fieldset>
 </form>
+<br><br><br><br>
+<p align="center"><a href="admin.html"><input type="submit" name="home" value="Home"></a></p>
 </body>
 </html> 
 <?php
@@ -74,14 +69,18 @@ if(isset($_POST["submit"]))
   	$model=$_POST["model"];
   	$item=$_POST["item"];
   	$qty=$_POST["qty"];
-  	$from=$_POST["from"];
-  	$to=$_POST["to"];
+  	$period=$_POST["period"];  	
   	$warranty=$_POST["warranty"];
     $date=$_POST["date"];
 
-     if(($hardware=="") or ($emp_id=="") or ($qty<=0)or ($date=="") or ($model=="") or ($item=="") or ($from=="") or ($to=="")) 
+     if(($hardware=="") or ($emp_id=="") or ($qty<=0)or ($date=="") or ($model=="") or ($item=="") or ($period=="") or ($warranty=="")) 
      {
       echo "<script>alert('Please provide valid information!')</script>";
+     }
+     else
+     {
+      $query="insert into employee_items values('$emp_id','$hardware','$model','$item','$qty','$date','$period',$'warranty')";
+      $run=mysql_query($query) or die(mysql_error());
      }
  }
 ?>

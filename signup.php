@@ -50,12 +50,21 @@
 </td>
 </tr>
 <tr>
-<td>Location*:</td>
-<td><input type= 'varchar' name='location' , id= 'location' , maxlength="50"/></td>
+<td>Location*:</td></tr>
+<td>Building</td>
+<td><input type= 'varchar' name='building' , id= 'Building' , maxlength="50"/></td>
+</tr>
+<tr>
+<td>Floor_No</td>
+<td><input type='varchar' name='floor' , id='Floor' , maxlength="50"/></td>
+</tr>
+<tr>
+<td>Seat_No</td>
+<td><input type='number' name='seat' , id='Seat' , maxlength="50"/></td>
 </tr>
 <tr>
 <td>Date of Birth:</td>
-<td><input type='varchar' , name ='dob' , id='dob' , maxlength="15"/></td>
+<td><input type='date' , name ='dob' , id='dob' , maxlength="15"/></td>
 </tr>
 <tr>
 <td>Employee_ID*:</td>
@@ -79,15 +88,17 @@ if(isset($_POST['Submit']))
 	$name=$_POST['name'];
 	$email=$_POST['email'];
 	$dept=$_POST['dept'];
-	$location=$_POST['location'];
+	$building=$_POST['building'];
+	$floor=$_POST['floor'];
+	$seat=$_POST['seat'];
 	$emp_id=$_POST['emp_id'];
 	$emp_pass=$_POST['password'];
 	$type=$_POST['type'];
-	if(($name=="")or ($email=="")or ($location=="") or ($emp_id=="") or ($password=""))
+	if(($name=="")or ($email=="")or ($building=="") or($floor=="") or($seat=="") or ($emp_id=="") or ($password=""))
 	{ echo "<script>alert('please enetr the details')</script>";
     }
 	else
-	{  $query= "INSERT INTO pending_reg VALUES('$name' , '$email' , '$dept' , '$location' , '$emp_id' , '$emp_pass' , '$type' )";
+	{  $query= "INSERT INTO pending_reg VALUES('$name' , '$email' , '$dept' , '$building' , '$floor' , '$seat' , '$emp_id' , '$emp_pass' , '$type' )";
         $run= mysql_query($query) or die(mysql_error());
 		echo"<script>alert('please check in after 4 days')</script>";
 		echo "<script>window.open('index.php','_self')</script>";

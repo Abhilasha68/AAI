@@ -29,11 +29,12 @@ echo "<h3 align='center'>Name: {$row2['Name']}</h3>";
 while($row1=mysql_fetch_array($run1))
 {
 echo "<tr>
-	<td>{$row2['HW_Type']}</td>
-	<td>{$row2['Model_No']}</td>
-	<td>{$row2['Item_No']}</td>
-	<td>{$row2['Quantity']}</td>
-	<td>{$row2['Date_of_All']}</td>";
+	<td>{$row1['HW_Type']}</td>
+	<td>{$row1['Model_No']}</td>
+	<td>{$row1['Item_No']}</td>
+	<td>{$row1['Quantity']}</td>
+	<td>{$row1['Date_of_All']}</td>
+	</tr>";
 }
 ?>
 </tbody>

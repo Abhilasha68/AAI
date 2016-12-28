@@ -1,5 +1,14 @@
 <html>
 <body>
+<?php
+$con=mysql_connect("localhost" , "root" , "");
+$db=mysql_select_db("aai" , $con);
+session_start();
+$emp_id=$_SESSION["emp_id"];
+$q="select Name,Employee_ID from employee_table where Employee_ID=$emp_id";
+$r=mysql_query($q);
+$ro=mysql_fetch_array($r);
+?>
 <table align="center" , border="0">
 <form method="POST" align="center">
 <tr>
@@ -7,11 +16,11 @@
 </tr>
 <tr>
 <td>Name : </td>
-<td><input type="text" name="name"></td>
+<td><input type="text" name="name" value=<?php echo $ro['Name'];?>></td>
 </tr>
 <tr>
 <td>Employee ID : </td>
-<td><input type="varchar" name="emp_id"></td>
+<td><input type="varchar" name="emp_id" value=<?php echo $ro['Employee_ID'];?>></td>
 </tr>
 <tr>
 <td>Hardware Type : </td>
@@ -43,16 +52,14 @@
 </tr>
 </form>
 </table>
+<br><br><br><br><br>
+<p align="center"><a href="client.php"><input type="submit" name="home" value="Home"></a></p>
 </body>
 </html>
 <?php
-$con=mysql_connect("localhost" , "root" , "");
-$db=mysql_select_db("aai" , $con);
-session_start();
+
 if(isset($_POST["submit"]))
-  {
-  	$name=$_POST["name"];
-  	$emp_id=$_SESSION["emp_id"];
+  {  	
   	$hardware=$_POST["hardware"];
   	$qty=$_POST["qty"];
     $date=$_POST["date"];
@@ -67,7 +74,6 @@ if(isset($_POST["submit"]))
          $run=mysql_query($query)or die(mysql_error());
          $run1=mysql_query($query1) or die (mysql_error());
          echo "<script>alert('Thankyou ! Please check after one week')</script>";
-         echo "<script>window.open('client.php','_self')</script>";
      }
   }
 

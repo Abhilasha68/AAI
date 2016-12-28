@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2016 at 12:24 PM
+-- Generation Time: Dec 27, 2016 at 07:57 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -55,7 +55,9 @@ CREATE TABLE `employee_table` (
   `Name` varchar(50) NOT NULL,
   `Department` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
-  `Location` varchar(50) NOT NULL,
+  `Building` varchar(50) NOT NULL,
+  `Floor_No` varchar(50) NOT NULL,
+  `Seat_No` varchar(50) NOT NULL,
   `Type` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -63,13 +65,13 @@ CREATE TABLE `employee_table` (
 -- Dumping data for table `employee_table`
 --
 
-INSERT INTO `employee_table` (`Employee_ID`, `Name`, `Department`, `Email`, `Location`, `Type`) VALUES
-('1000', 'Ramesh', 'Administration', 'rameshkumar@gmail.com', 'admin, ground floor , 10', 'admin'),
-('1001', 'Suresh', 'Airport Systems', 'sureshrana@gmail.com', 'as, 1st floor , 56', 'inventory'),
-('1002', 'Raghav', 'Commercial', 'raghavsingh@gmail.com', 'Comm.,4th floor, 67', 'client'),
-('1003', 'Karan', 'Public Relations', 'karankashyap@gmail.com', 'PR, 3rd Floor, 32', 'client'),
-('1004', 'Shreya', 'Human Resource', 'shreyasharma@gmail.com', 'HR, 2nd Floor, 41', 'client'),
-('1005', 'Aakriti', 'Law', 'aakriti1989@gmail.com', 'Law, Groun Floor, 15', 'client');
+INSERT INTO `employee_table` (`Employee_ID`, `Name`, `Department`, `Email`, `Building`, `Floor_No`, `Seat_No`, `Type`) VALUES
+('1000', 'Ramesh', 'Administration', 'rameshkumar@gmail.com', 'Admin', 'Ground Floor', '89', 'admin'),
+('1001', 'Suresh', 'Airport Systems', 'sureshrana@gmail.com', 'AS', 'First Floor', '69', 'inventory'),
+('1002', 'Raghav', 'Commercial', 'raghavsingh@gmail.com', 'Communication', '4th Floor', '12', 'client'),
+('1003', 'Karan', 'Public Relations', 'karankashyap@gmail.com', 'PR', '3rd Floor', '54', 'client'),
+('1004', 'Shreya', 'Human Resource', 'shreyasharma@gmail.com', 'HR', '2nd Floor', '31', 'client'),
+('1005', 'Aakriti', 'Law', 'aakriti1989@gmail.com', 'Law', 'Ground Floor', '71', 'client');
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,9 @@ CREATE TABLE `issue` (
 --
 
 INSERT INTO `issue` (`Name`, `Employee_Id`, `Hardware_Type`, `Model_no`, `Item_no`, `Date`, `Issue`) VALUES
-('karan', '1003', 'Computer', '65465', '21321', '0000-00-00', 'vgftycdix');
+('shreya', '1004', 'Computer', '64564654', '2121', '2016-12-15', 'Give me something'),
+('karan', '1003', 'Computer', '65465', '21321', '0000-00-00', 'vgftycdix'),
+('shreya', '1004', 'Computer', '2132', '8789', '2016-12-20', 'Hello whats up');
 
 -- --------------------------------------------------------
 
@@ -178,8 +182,10 @@ CREATE TABLE `move` (
   `Employee_ID` varchar(50) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Old_Building` varchar(50) NOT NULL,
+  `Old_Floor` varchar(50) NOT NULL,
   `Old_Seat` varchar(50) NOT NULL,
   `New_Building` varchar(50) NOT NULL,
+  `New_Floor` varchar(50) NOT NULL,
   `New_Seat` varchar(50) NOT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -188,8 +194,9 @@ CREATE TABLE `move` (
 -- Dumping data for table `move`
 --
 
-INSERT INTO `move` (`Employee_ID`, `Name`, `Old_Building`, `Old_Seat`, `New_Building`, `New_Seat`, `Date`) VALUES
-('1003', 'karan', '2', '3', '2', '8', '2016-12-13');
+INSERT INTO `move` (`Employee_ID`, `Name`, `Old_Building`, `Old_Floor`, `Old_Seat`, `New_Building`, `New_Floor`, `New_Seat`, `Date`) VALUES
+('1004', 'Shreya', '646468', '1321', '98798', '89', '45', '6', '2016-12-14'),
+('1005', 'Akriti', '65', '32132', '78', '41', '87', '23', '2016-12-11');
 
 -- --------------------------------------------------------
 
@@ -201,7 +208,9 @@ CREATE TABLE `pending_reg` (
   `Name` varchar(50) NOT NULL,
   `E_Mail` varchar(50) NOT NULL,
   `Dept` varchar(50) NOT NULL,
-  `Location` varchar(50) NOT NULL,
+  `Building` varchar(50) NOT NULL,
+  `Floor_No` varchar(50) NOT NULL,
+  `Seat_No` varchar(50) NOT NULL,
   `Employee_ID` varchar(50) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `Type` varchar(10) NOT NULL DEFAULT 'client'
@@ -211,11 +220,11 @@ CREATE TABLE `pending_reg` (
 -- Dumping data for table `pending_reg`
 --
 
-INSERT INTO `pending_reg` (`Name`, `E_Mail`, `Dept`, `Location`, `Employee_ID`, `Password`, `Type`) VALUES
-('shivani sharma', 'shivanisharma@gmail.com', 'Information Technology', 'it , 1st floor , 20', '1006', 'sharmaji95', 'client'),
-('ishita jaisia', 'ishitajaisia@gmail.com', 'Information Technology', 'it , 1st floor , 21', '1007', 'hello', 'client'),
-('Ashok Kumar', 'ashujaisia@gmail.com', 'Architecture Planning', 'AP,Ground Floor,56', '1008', '1008', 'client'),
-('Abhilasha', 'abhilashasingh1996@gmail.com', 'Information Technology', 'it , 1st floor , 23', '1009', 'abhilasha', 'client');
+INSERT INTO `pending_reg` (`Name`, `E_Mail`, `Dept`, `Building`, `Floor_No`, `Seat_No`, `Employee_ID`, `Password`, `Type`) VALUES
+('shivani sharma', 'shivanisharma@gmail.com', 'Information Technology', 'IT', '1st Floor', '20', '1006', 'sharmaji95', 'client'),
+('ishita jaisia', 'ishitajaisia@gmail.com', 'Information Technology', 'IT', '1st Floor', '21', '1007', 'hello', 'client'),
+('Ashok Kumar', 'ashujaisia@gmail.com', 'Architecture Planning', 'AP', 'Ground Floor', '56', '1008', '1008', 'client'),
+('Abhilasha', 'abhilashasingh1996@gmail.com', 'Information Technology', 'IT', '1st Floor', '23', '1009', 'abhilasha', 'client');
 
 -- --------------------------------------------------------
 
@@ -236,7 +245,10 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`Name`, `Employee_Id`, `Hardware Type`, `Qty`, `Date`) VALUES
-('shreya', '1004', 'Computer', 2, '0000-00-00');
+('shreya', '1004', 'Computer', 2, '0000-00-00'),
+('karan', '1003', 'Mouse', 1, '2016-12-13'),
+('karan', '1003', 'Computer', 123213, '2016-12-18'),
+('karan', '1003', 'Computer', 123213, '2016-12-18');
 
 --
 -- Indexes for dumped tables

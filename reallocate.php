@@ -62,6 +62,8 @@
 </table>
 </fieldset>
 </form>
+<br><br><br><br>
+<p align="center"><a href="client.php"><input type="submit" name="home"  value="Home"></a></p>
 </body>
 </html> 
 <?php
@@ -83,7 +85,6 @@ if(isset($_POST["submit"]))
      if(($hardware=="") or ($emp_id=="") or ($qty<=0)or ($date=="") or ($model=="") or ($item=="") or ($from=="") or ($to=="")) 
      {
      	echo "<script>alert('Please provide valid information!')</script>";
-
      }
      else
      {

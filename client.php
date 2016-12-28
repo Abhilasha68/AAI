@@ -6,7 +6,7 @@ $var=$_SESSION['emp_id'];
 $_SESSION['emp_id']=$var;
 $con=mysql_connect("localhost","root","");
 $db=mysql_select_db("aai",$con);
-$query = "select Name,Employee_ID,Location from employee_table where Employee_ID='$var'";
+$query = "select Name,Employee_ID,Building,Floor_No,Seat_No from employee_table where Employee_ID='$var'";
 $run=mysql_query($query);
 $row=mysql_fetch_array($run);
 echo '<br><br><br><br><br>'
@@ -23,7 +23,7 @@ echo "<tr>
 </tr>
 <tr>
 <td><strong>Location:</strong></td>
-<td>{$row['Location']}</td>
+<td>{$row['Building']}/{$row['Floor_No']}/{$row['Seat_No']}</td>
 </tr>";
 ?>
 </table>

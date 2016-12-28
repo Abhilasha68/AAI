@@ -45,5 +45,7 @@ while($row=mysql_fetch_array($run))
 <br><br><br><br>
 <p align="center"><a href="requestsupp.html">Request Item from Supplier</a><br>
 <a href="collectsupp.php">Collect Item from Supplier</a></p>
+<br><br><br><br>
+<p align="center"><a href="admin.html"><input type="submit" name="home" value="Home"></a></p>
 </body>
 </html>

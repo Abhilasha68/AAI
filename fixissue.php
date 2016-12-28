@@ -43,5 +43,7 @@
  </tbody>
  </table>
 </fieldset>
+<br><br><br><br>
+<p align="center"><a href="admin.html"><input type="submit" name="home" value="Home"></a></p>
 </boby>
 </html>

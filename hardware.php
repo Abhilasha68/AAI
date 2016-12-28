@@ -38,5 +38,15 @@ while($row=mysql_fetch_array($run))
 ?>
 </tbody>
 </table>
+<br><br><br><br><br>
+<p align="center">
+<input type="submit" name="home" value="Home">
+</p>
 </body>
 </html>
+<?php
+if(isset($_POST['home']))
+{
+	echo "<script>window.open('admin.html','_self')</script>";
+}
+?>
