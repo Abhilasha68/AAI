@@ -98,8 +98,18 @@
                                         </div>
 
                                 <div class="form-group">
-                                <label>Location</label>
-                                    <input class="form-control" placeholder="Location: " name="location" type="varchar" id='location' maxlength="50" autofocus>
+                                <label>Building</label>
+                                    <input class="form-control" placeholder="Building " name="building" type="varchar" id='building' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Floor No</label>
+                                    <input class="form-control" placeholder="Floor No " name="floor_no" type="varchar" id='floor_no' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Seat No</label>
+                                    <input class="form-control" placeholder="Seat No " name="seat_no" type="varchar" id='seat_no' maxlength="50" autofocus>
                                 </div>
 
                                 <div class="form-group">
@@ -135,15 +145,17 @@ if(isset($_POST['Submit']))
     $name=$_POST['name'];
     $email=$_POST['email'];
     $dept=$_POST['dept'];
-    $location=$_POST['location'];
+    $building=$_POST['building'];
+    $floor_no=$_POST['floor_no'];
+    $seat_no=$_POST['seat_no'];
     $emp_id=$_POST['emp_id'];
     $emp_pass=$_POST['password'];
-    $type=$_POST['type'];
-    if(($name=="")or ($email=="")or ($location=="") or ($emp_id=="") or ($password=""))
+    $type='client';
+    if(($name=="")or ($email=="")or ($building=="") or ($floor_no=="") or ($seat_no="") or ($emp_id=="") or ($password=""))
     { echo "<script>alert('please ente the details')</script>";
     }
     else
-    {  $query= "INSERT INTO pending_reg VALUES('$name' , '$email' , '$dept' , '$location' , '$emp_id' , '$emp_pass' , '$type' )";
+    {  $query= "INSERT INTO pending_reg VALUES('$name' , '$email' , '$dept' , '$building' , '$floor_no' , '$seat_no' , '$emp_id' , '$emp_pass' , '$type' )";
         $run= mysql_query($query) or die(mysql_error());
         echo"<script>alert('please check in after 4 days')</script>";
         echo "<script>window.open('login.php','_self')</script>";

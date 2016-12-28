@@ -69,7 +69,7 @@
                         </form>
                     </div>
                 </div>
-                <a href="signupUI.php" class="btn btn-lg btn-danger btn-block">Not already signed in? SIGN UP</a>
+                <a href="signup.php" class="btn btn-lg btn-danger btn-block">Not already signed in? SIGN UP</a>
             </div>
         </div>
     </div>

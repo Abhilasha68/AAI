@@ -42,11 +42,11 @@
 <?php
 $con=mysql_connect("localhost", "root" , "");
 $db=mysql_select_db("aai",$con);
-session_start();
-$emp_id=$_SESSION["emp_id"];
-$query="SELECT Name,Employee_ID from employee_table Where Employee_ID=$emp_id";
-$run=mysql_query($query)or die(mysql_error());
-$row=mysql_fetch_array($run);
+$var1=$_GET['var'];
+$emp_id=$var1;
+$query1="select Name,Employee_ID,Building,Floor_No,Seat_No from employee_table where Employee_ID=$emp_id";
+$run1=mysql_query($query1);
+$row=mysql_fetch_array($run1);
 ?>
 
     <div id="wrapper">
@@ -179,7 +179,7 @@ $row=mysql_fetch_array($run);
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Issue Raised</h3>
+                        <h3 class="panel-title">Move Request</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="issue.php" method="POST">
@@ -188,49 +188,49 @@ $row=mysql_fetch_array($run);
 
                                 <div class="form-group">
                                 <label>Name</label>
-                                    <input class="form-control" placeholder="Employee id" name="name" type="text" value=<?php echo $row['Name'];?> id='name' maxlength="50" autofocus>
+                                    <input class="form-control" placeholder="Name" name="name" type="text" value=<?php echo $row['Name'];?> id='name' maxlength="50" autofocus>
                                 </div>
 
                                 <div class="form-group">
                                 <label>Employee Id</label>
-                                    <input class="form-control" placeholder="Employee id" name="emp_id" type="varchar" value=<?php echo $row['Employee_ID'];?> id='emp_id' maxlength="50" autofocus>
+                                    <input class="form-control" placeholder="Employee ID" name="emp_id" type="varchar" value=<?php echo $row['Employee_ID'];?> id='emp_id' maxlength="50" autofocus>
                                 </div>
 
                                <div class="form-group">
-                                            <label>Hardware Type</label>
-                                            <select class="form-control" name='hardware' maxlength="50">
-                                                <option>Computer</option>
-                                                <option>Printer</option>
-                                                <option>Scanner</option>
-                                                <option>Mouse</option>
-                                                <option>KeyBoard</option>
-                                                <option>CPU</option>
-                                                <option>Monitor</option>
-                                                <option>Fax Machine</option>
-                                                <option>Web Camera</option>
-                                                <option>Projector</option>
-                                                <option>Other</option>
-                                            </select>
-                                        </div>
+                                <label>Present Building</label>
+                                    <input class="form-control" placeholder="Present Building" name="obuilding" type="varchar" value=<?php echo $row['Building'];?> id='obuilding' maxlength="50" autofocus>
+                                </div>
+
 
                                 <div class="form-group">
-                                <label>Model Number</label>
-                                    <input class="form-control" placeholder="Model Number " name="model" type="varchar" id='model' maxlength="50" autofocus>
+                                <label>Present Floor Number</label>
+                                    <input class="form-control" placeholder="Present Floor Number " name="ofloor" type="varchar" value=<?php echo $row['Floor_No'];?> id='ofloor' maxlength="50" autofocus>
                                 </div>
 
                                 <div class="form-group">
-                                <label>Item number</label>
-                                    <input class="form-control" placeholder="Item number" name="item" type="varchar"  maxlength="50" autofocus>
+                                <label>Present Seat Number</label>
+                                    <input class="form-control" placeholder="Present Seat Number" name="oseat_no" type="varchar" value=<?php echo $row['Seat_No'];?> maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>New Building</label>
+                                    <input class="form-control" placeholder="Present Building" name="nbuilding" type="varchar" id='nbuilding' maxlength="50" autofocus>
+                                </div>
+
+
+                                <div class="form-group">
+                                <label>New Floor Number</label>
+                                    <input class="form-control" placeholder="New Floor Number " name="nfloor" type="varchar" id='nfloor' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>New Seat Number</label>
+                                    <input class="form-control" placeholder="New Seat Number" name="nseat_no" type="varchar" maxlength="50" autofocus>
                                 </div>
 
                                 <div class="form-group">
                                  <label>Date</label>
                                  <input class="form-control" placeholder="Date" name="date" type="date" maxlength="50" autofocus>
-                                </div>
-
-                                <div class="form-group">
-                                <label>Issue</label>
-                                    <input class="form-control" placeholder="Issue" name="text" type="text"  maxlength="50" autofocus>
                                 </div>
                                 
                                 <input class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Submit">
@@ -281,28 +281,27 @@ $row=mysql_fetch_array($run);
 </html>
 
 <?php
-if(isset($_POST["Submit"]))
-   {
-    $name=$_POST["name"];
-    $hardware=$_POST["hardware"];
-     $model=$_POST["model"];
-     $item=$_POST["item"];
-     $date=$_POST["date"];
-     $issue=$_POST["text"];
-     if(($name=="") or ($emp_id=="") or ($model=="") or ($item=="") or ($date==""))
-     {
-        echo "<script>alert('Please provide the information !')</script>";
-     }
-     else
-     {
-         $query1= "INSERT INTO issue VALUES('$name' , '$emp_id' , '$hardware' , '$model' , '$item', '$date','$issue')";
-         $run1=mysql_query($query1) or die(mysql_error());
-         echo "<script>alert('Thankyou !  Please check after one week')</script>";
-     }
+   
+   if(isset($_POST["Submit"]))
+   {   
+      $name=$_POST["name"];
+      $obuilding=$_POST["obuilding"];
+      $ofloor=$_POST["ofloor"];
+      $oseat_no=$_POST["oseat_no"];
+      $nbuilding=$_POST["nbuilding"];
+      $nseat_no=$_POST["nseat_no"];
+      $nfloor=$_POST["nfloor"];
+      $date=$_POST["date"];
+      $ht="move";
+      if(($name=="") or ($emp_id=="") or($nbuilding=="") or ($nfloor=="") or ($nseat_no=="") or ($date==""))
+         { echo  "<script>alert('Please provide all the information !')</script>";}
+      else
+          {
+            $query="insert into move values ('$emp_id','$name','$obuilding','$oseat_no','$nbuilding','$nseat_no','$date')";
+            $query1= "INSERT INTO history(Employee_ID , Name , Type , Date) VALUES( '$emp_id' ,'$name' , '$ht' , '$date' )";
+            $run=mysql_query($query) or die(mysql_error());
+            $run1=mysql_query($query1) or die(mysql_error());
+            echo "<script>window.open('client.php','_self')</script>";
+          }
    }
-   if(isset($_POST["home"]))
-   { 
-      echo "<script>window.open('client.php' , '_self')</script>"; 
-   }
-
 ?>
