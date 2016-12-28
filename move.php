@@ -66,19 +66,22 @@ $row=mysql_fetch_array($run1);
    if(isset($_POST["submit"]))
    {   
    	  $name=$_POST["name"];
-   	  /*$obuilding=;
-        $ofloor=;
-   	  $oseat_no=;*/
+   	  $obuilding=$_POST["obuilding"];
+         $ofloor=$_POST["ofloor"];
+   	  $oseat_no=$_POST["oseat_no"];
    	  $nbuilding=$_POST["nbuilding"];
    	  $nseat_no=$_POST["nseat_no"];
-        $nfloor=$_POST["nfloor"];
+         $nfloor=$_POST["nfloor"];
    	  $date=$_POST["date"];
+         $ht="move";
    	  if(($name=="") or ($emp_id=="") or($nbuilding=="") or ($nseat_no=="") or ($date==""))
    	     { echo  "<script>alert('Please provide all the information !')</script>";}
    	  else
           {
             $query="insert into move values ('$emp_id','$name','$obuilding','$oseat_no','$nbuilding','$nseat_no','$date')";
+            $query1= "INSERT INTO history(Employee_ID , Name , Type , Date) VALUES( '$emp_id' ,'$name' , '$ht' , '$date' )";
             $run=mysql_query($query) or die(mysql_error());
+            $run1=mysql_query($query1) or die(mysql_error());
             echo "<script>window.open('client.php','_self')</script>";
           }
    }

@@ -167,6 +167,9 @@
                                                 <li>
                             <a href=".php"><i class="fa fa-table fa-fw"></i> Reallocation Alarm</a>
                         </li>
+                        <li>
+                        <a href="histroy_admin.php"><i class="fa fa-table fa-fw"></i> History</a>
+                        </li>
                       
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -237,6 +240,11 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <div class="row">
+               <div class="col-lg-2 col-lg-offset-4">
+                  <a href="admin.php"><input class="btn btn-lg btn-primary btn-block" type="submit" name="Home" value="Home"></a>
+                  </div>
+            </div>
         </div>
     <!-- /#wrapper -->
 

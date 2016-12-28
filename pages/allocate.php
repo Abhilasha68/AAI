@@ -167,6 +167,9 @@
                                                 <li>
                             <a href=".php"><i class="fa fa-table fa-fw"></i> Reallocation Alarm</a>
                         </li>
+                        <li>
+                        <a href="histroy_admin.php"><i class="fa fa-table fa-fw"></i> History</a>
+                        </li>
                       
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -59,10 +59,13 @@ $ro=mysql_fetch_array($r);
 <?php
 
 if(isset($_POST["submit"]))
-  {  	
+  {  
+    $name=$_POST["name"];
+    $emp_id=$_POST["emp_id"];	
   	$hardware=$_POST["hardware"];
   	$qty=$_POST["qty"];
     $date=$_POST["date"];
+    $ht="request";
 
      if(($name=="") or ($emp_id=="") or ($qty<=0)or ($date==""))
      {
@@ -71,8 +74,10 @@ if(isset($_POST["submit"]))
      else
      {   $query="SELECT Name from employee_table Where Employee_ID=$emp_id";
     	   $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$qty' , '$date')";
+         $query2= "INSERT INTO history(Employee_ID , Name , Type , Date , Hardware_type) VALUES( '$emp_id' ,'$name'  , '$ht' , '$date' , '$hardware' )";
          $run=mysql_query($query)or die(mysql_error());
          $run1=mysql_query($query1) or die (mysql_error());
+         $run2=mysql_query($query2) or die (mysql_error());
          echo "<script>alert('Thankyou ! Please check after one week')</script>";
      }
   }

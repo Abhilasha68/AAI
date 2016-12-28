@@ -160,7 +160,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="requestsupp.html"><i class="fa fa-table fa-fw"></i>Request Item</a>
+                            <a href="request.php"><i class="fa fa-table fa-fw"></i>Request Item</a>
                         </li>
                         <li>
                             <a href="issue.php"><i class="fa fa-table fa-fw"></i> Raise an issue</a>

@@ -164,8 +164,11 @@
                         <li>
                             <a href=".php"><i class="fa fa-table fa-fw"></i> Warrenty Alarm</a>
                         </li>
-                                                <li>
+                        <li>
                             <a href=".php"><i class="fa fa-table fa-fw"></i> Reallocation Alarm</a>
+                        </li>
+                        <li>  
+                           <a href="history_admin.php"><i class="fa fa-table fa-fw"></i> History </a>
                         </li>
                       
                 </div>

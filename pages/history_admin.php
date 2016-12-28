@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>History of Issues</title>
+    <title>ADMIN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,16 +39,6 @@
 </head>
 
 <body>
-<?php
-    session_start();
-    $var=$_SESSION['emp_id'];
-    $_SESSION['emp_id']=$var;
-    $con=mysql_connect("localhost","root","");
-    $db=mysql_select_db("aai",$con);
-    $query = "select Name,Employee_ID,Location from employee_table where Employee_ID='$var'";
-    $run=mysql_query($query);
-    $row=mysql_fetch_array($run);
- ?>
 
     <div id="wrapper">
 
@@ -61,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Airports Authority of India</a>
+                <a class="navbar-brand">Airports Authority of India</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -160,33 +150,36 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="requestsupp.html"><i class="fa fa-table fa-fw"></i>Request Item</a>
+                            <a href="store.php"><i class="fa fa-table fa-fw"></i>IT Store</a>
                         </li>
                         <li>
-                            <a href="issue.php"><i class="fa fa-table fa-fw"></i> Raise an issue</a>
+                            <a href="fixissue.php"><i class="fa fa-table fa-fw"></i> Fix issues</a>
                         </li>
                         <li>
-                            <a href="history.php"><i class="fa fa-table fa-fw"></i> History of issues</a>
+                            <a href="allocate.php"><i class="fa fa-table fa-fw"></i> Allocate/Reallocate Requests</a>
                         </li>
+                        <li>
+                            <a href="move_admin.php"><i class="fa fa-table fa-fw"></i> Movement Request</a>
+                        </li>
+                        <li>
+                            <a href=".php"><i class="fa fa-table fa-fw"></i> Warrenty Alarm</a>
+                        </li>
+                                                <li>
+                            <a href=".php"><i class="fa fa-table fa-fw"></i> Reallocation Alarm</a>
+                        </li>
+                        <li>
+                        <a href="histroy_admin.php"><i class="fa fa-table fa-fw"></i> History</a>
+                        </li>
+                      
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
-
-       <div id="page-wrapper">
-       <div class="row">
+<div id="page-wrapper">
+            <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-          
-
-           <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Issues Raised</h1>
+                    <h1 class="page-header">History</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -195,41 +188,89 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            History of Issues raised
+                            Issues History
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <?php
-                                            $con=mysql_connect("localhost","root","");
-                                            $db=mysql_select_db("aai",$con);
-                                            $query1="select Hardware_Type,Model_no,Item_no,Date,Issue from issue where Employee_Id='$var'";
-                                            $run1=mysql_query($query1);
-                                        ?>
-                                <thead>
-                                <tr>
-								<th>HW_Type</th>
-								<th>Model No</th>
-								<th>Item No</th>
-								<th>Date</th>
-								<th>Issue</th>
-								</tr>
+                            $con=mysql_connect("localhost" , "root" , "");
+                            $db=mysql_select_db("aai" , $con);
+                            $query1= "select Employee_ID,Name,Hardware_type,Date,issue from history where Type='issues'";
+                            $query3= "select Employee_ID,Name,Date from history where Type='move'";
+                            $run1=mysql_query($query1);
+                            $run3=mysql_query($query3);
+                            ?>                     <thead>
+                                    <thead>
+                                     <tr>
+                                     <th>Employee ID</th>
+                                     <th>Name</th>
+                                     <th>Hardware Type</th>
+                                     <th>Issue</th>
+                                     <th>Date</th>
+                                     </tr>
+                                    </thead>
                                 </thead>
                                 <tbody>
-                                    <?php
-										while($row=mysql_fetch_array($run1))
-										{
-											echo "<tr>
-											<td>{$row['Hardware_Type']}</td>
-											<td>{$row['Model_no']}</td>
-											<td>{$row['Item_no']}</td>
-											<td>{$row['Date']}</td>
-											<td>{$row['Issue']}</td>
-											</tr>";
-										}
-									?>
+                                   <?php
+                                        while($row=mysql_fetch_array($run1))
+                                        {    echo "<tr>
+                                                    <td>{$row['Employee_ID']}</td>
+                                                    <td>{$row['Name']}</td>
+                                                    <td>{$row['Hardware_type']}</td>
+                                                    <td>{$row['issue']}</td>
+                                                    <td>{$row['Date']}</td>
+                                                    </tr>";
+                                        }
+                                     ?>
                                 </tbody>
-
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                        </div>
+                              <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>     
+                    <!-- /.row -->
+             <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Hardware Requests History
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <?php
+                             $con=mysql_connect("localhost" , "root" , "");
+                             $db=mysql_select_db("aai" , $con);
+                             $query2= "select Employee_ID,Name,Hardware_type,Date from history where Type='request'";
+                              $run2=mysql_query($query2);
+                             ?>
+                                    <thead>
+                                    <thead>
+                                     <tr>
+                                     <th>Employee ID</th>
+                                     <th>Name</th>
+                                     <th>Hardware Type</th>
+                                     <th>Date</th>
+                                     </tr>
+                                    </thead>
+                                </thead>
+                                <tbody>
+                                   <?php
+                                        while($row=mysql_fetch_array($run2))
+                                        {    echo "<tr>
+                                                    <td>{$row['Employee_ID']}</td>
+                                                    <td>{$row['Name']}</td>
+                                                    <td>{$row['Hardware_type']}</td>
+                                                    <td>{$row['Date']}</td>
+                                                    </tr>";
+                                        }
+                                     ?>
+                                </tbody>
                             </table>
                             <!-- /.table-responsive -->
                         </div>
@@ -239,16 +280,58 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-           <div class="row">
-                   <div class="col-lg-2 col-lg-offset-4">
-                      <a href="client.php"><input class="btn btn-lg btn-primary btn-block" type="submit" name="Home" value="Home"></a>
-                      </div>
-                </div>  
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Move Request History
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <?php
+                            $con=mysql_connect("localhost" , "root" , "");
+                            $db=mysql_select_db("aai" , $con);
+                            $query3= "select Employee_ID,Name,Date from history where Type='move'";;
+                            $run3=mysql_query($query3);
+                            ?>                     <thead>
+                                    <thead>
+                                     <tr>
+                                     <th>Employee ID</th>
+                                     <th>Name</th>
+                                     <th>Date</th>
+                                     </tr>
+                                    </thead>
+                                </thead>
+                                <tbody>
+                                   <?php
+                                        while($row=mysql_fetch_array($run3))
+                                        {    echo "<tr>
+                                                    <td>{$row['Employee_ID']}</td>
+                                                    <td>{$row['Name']}</td>
+                                                    <td>{$row['Date']}</td>
+                                                    </tr>";
+                                        }
+                                     ?>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                        </div>
+                              <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>     
+            <div class="row">
+               <div class="col-lg-2 col-lg-offset-4">
+                  <a href="admin.php"><input class="btn btn-lg btn-primary btn-block" type="submit" name="Home" value="Home"></a>
+                  </div>
+            </div>
         </div>
-         
-    </div>
     <!-- /#wrapper -->
-    
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 

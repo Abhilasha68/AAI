@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>History of Issues</title>
+    <title>ADMIN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,16 +39,6 @@
 </head>
 
 <body>
-<?php
-    session_start();
-    $var=$_SESSION['emp_id'];
-    $_SESSION['emp_id']=$var;
-    $con=mysql_connect("localhost","root","");
-    $db=mysql_select_db("aai",$con);
-    $query = "select Name,Employee_ID,Location from employee_table where Employee_ID='$var'";
-    $run=mysql_query($query);
-    $row=mysql_fetch_array($run);
- ?>
 
     <div id="wrapper">
 
@@ -61,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Airports Authority of India</a>
+                <a class="navbar-brand">Airports Authority of India</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -159,7 +149,7 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
+                         <li>
                             <a href="requestsupp.html"><i class="fa fa-table fa-fw"></i>Request Item</a>
                         </li>
                         <li>
@@ -168,87 +158,85 @@
                         <li>
                             <a href="history.php"><i class="fa fa-table fa-fw"></i> History of issues</a>
                         </li>
+                      
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
 
-
-       <div id="page-wrapper">
-       <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-          
-
+        <div id="page-wrapper">
            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Issues Raised</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            History of Issues raised
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        <?php
-                                            $con=mysql_connect("localhost","root","");
-                                            $db=mysql_select_db("aai",$con);
-                                            $query1="select Hardware_Type,Model_no,Item_no,Date,Issue from issue where Employee_Id='$var'";
-                                            $run1=mysql_query($query1);
-                                        ?>
-                                <thead>
-                                <tr>
-								<th>HW_Type</th>
-								<th>Model No</th>
-								<th>Item No</th>
-								<th>Date</th>
-								<th>Issue</th>
-								</tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-										while($row=mysql_fetch_array($run1))
-										{
-											echo "<tr>
-											<td>{$row['Hardware_Type']}</td>
-											<td>{$row['Model_no']}</td>
-											<td>{$row['Item_no']}</td>
-											<td>{$row['Date']}</td>
-											<td>{$row['Issue']}</td>
-											</tr>";
-										}
-									?>
-                                </tbody>
-
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Issue Raised</h3>
                     </div>
-                    <!-- /.panel -->
+                    <div class="panel-body">
+                        <form role="form" action="issue.php" method="POST">
+                            <fieldset>
+                            <div class="row">
+
+                                <div class="form-group">
+                                <label>Name</label>
+                                    <input class="form-control" placeholder="Employee id" name="name" type="text" id='name' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Employee Id</label>
+                                    <input class="form-control" placeholder="Employee id" name="emp_id" type="varchar" id='emp_id' maxlength="50" autofocus>
+                                </div>
+
+                               <div class="form-group">
+                                            <label>Hardware Type</label>
+                                            <select class="form-control" name='hardware' maxlength="50">
+                                                <option>Computer</option>
+                                                <option>Printer</option>
+                                                <option>Scanner</option>
+                                                <option>Mouse</option>
+                                                <option>KeyBoard</option>
+                                                <option>CPU</option>
+                                                <option>Monitor</option>
+                                                <option>Fax Machine</option>
+                                                <option>Web Camera</option>
+                                                <option>Projector</option>
+                                                <option>other</option>
+                                            </select>
+                                        </div>
+
+                                <div class="form-group">
+                                <label>Quantity</label>
+                                    <input class="form-control" placeholder="uantity " name="qty" type="varchar" id='qty' maxlength="50" autofocus>
+                                </div>
+
+
+                                <div class="form-group">
+                                 <label>Date</label>
+                                 <input class="form-control" placeholder="Date" name="date" type="date" maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Issue</label>
+                                    <input class="form-control" placeholder="Issue" name="text" type="text"  maxlength="50" autofocus>
+                                </div>
+                                
+                                <input class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Submit">
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-           <div class="row">
+        </div>
+        <div class="row">
                    <div class="col-lg-2 col-lg-offset-4">
                       <a href="client.php"><input class="btn btn-lg btn-primary btn-block" type="submit" name="Home" value="Home"></a>
                       </div>
-                </div>  
-        </div>
-         
+                </div>
+    </div>
+
     </div>
     <!-- /#wrapper -->
-    
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -278,3 +266,35 @@
 </body>
 
 </html>
+<?php
+$con=mysql_connect("localhost", "root" , "");
+$db=mysql_select_db("aai",$con);
+if(isset($_POST["submit"]))
+  {  
+    $name=$_POST["name"];
+    $emp_id=$_POST["emp_id"];   
+    $hardware=$_POST["hardware"];
+    $qty=$_POST["qty"];
+    $date=$_POST["date"];
+    $ht="request";
+
+     if(($name=="") or ($emp_id=="") or ($qty<=0)or ($date==""))
+     {
+        echo "<script>alert('Please provide valid information!')</script>";
+     }
+     else
+     {   $query="SELECT Name from employee_table Where Employee_ID=$emp_id";
+           $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$qty' , '$date')";
+         $query2= "INSERT INTO history(Employee_ID , Name , Type , Date , Hardware_type) VALUES( '$emp_id' ,'$name'  , '$ht' , '$date' , '$hardware' )";
+         $run=mysql_query($query)or die(mysql_error());
+         $run1=mysql_query($query1) or die (mysql_error());
+         $run2=mysql_query($query2) or die (mysql_error());
+         echo "<script>alert('Thankyou ! Please check after one week')</script>";
+     }
+  }
+   if(isset($_POST["home"]))
+   { 
+      echo "<script>window.open('client.php' , '_self')</script>"; 
+   }
+
+?>

@@ -7,7 +7,7 @@
 <legend align="center">History</legend>
 <?php
 session_start();
-$con=mysql_connect("localhost",'root','');
+$con=mysql_connect("localhost","root","");
 $db=mysql_select_db("aai",$con);
 $var=$_SESSION['emp_id'];
 $query="select Hardware_Type,Model_no,Item_no,Date,Issue from issue where Employee_Id='$var'";

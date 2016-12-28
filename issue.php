@@ -68,13 +68,15 @@ $ro=mysql_fetch_array($r);
 
 if(isset($_POST["submit"]))
    {
-   	 
+   	 $name=$_POST["name"];
+     $emp_id=$_POST["emp_id"];
    	 $hardware=$_POST["hardware"];
    	 $model=$_POST["model"];
      $item=$_POST["Item_no"];
    	 $date=$_POST["date"];
      $issue=$_POST["issue"];
-   	 if(($name=="") or ($emp_id=="") or ($model=="") or ($item=="") or ($date==""))
+     $ht="issues";
+   	 if(($emp_id=="") or ($model=="") or ($item=="") or ($date==""))
    	 {
    	 	echo "<script>alert('Please provide the information !')</script>";
    	 }
@@ -82,8 +84,10 @@ if(isset($_POST["submit"]))
      {
     	$query="SELECT Name from employee_table Where Employee_ID=$emp_id";
          $query1= "INSERT INTO issue VALUES('$name' , '$emp_id' , '$hardware' , '$model' , '$item', '$date','$issue')";
+          $query2= "INSERT INTO history VALUES( '$emp_id' ,'$name'  , '$ht' , '$date' , '$hardware' ,'$issue' )";
          $run=mysql_query($query)or die(mysql_error());
          $run1=mysql_query($query1) or die(mysql_error());
+         $run2=mysql_query($query2)or die(mysql_error());
          echo "<script>alert('Thankyou !  Please check after one week')</script>";
      }
    }
