@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>EMPLOYEE</title>
+    <title>History of Issues</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,7 @@
     $_SESSION['emp_id']=$var;
     $con=mysql_connect("localhost","root","");
     $db=mysql_select_db("aai",$con);
-    $query = "select Name,Employee_ID,Building , Floor_No, Seat_No from employee_table where Employee_ID='$var'";
+    $query = "select Name,Employee_ID,Location from employee_table where Employee_ID='$var'";
     $run=mysql_query($query);
     $row=mysql_fetch_array($run);
  ?>
@@ -182,54 +182,11 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-offset-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Client Details
-                        </div>
-                        <div class="panel-body">
-                            
-
-                        <div class="col-lg-8 col-md-offset-2">
-                    <!--<div class="panel panel-default">-->
-                        
-                        <!-- /.panel-heading -->
-                        <!--<div class="panel-body">-->
-                            <div class="table-responsive">
-
-                                <table class="table">
-                                   <?php
-                                   echo "<tr>
-                                    <td><strong>Name:</strong></td>
-                                    <td>{$row['Name']}</td>
-                                    </tr>
-                                    <tr>
-                                    <td><strong>Employee ID:</strong></td>
-                                    <td>{$row['Employee_ID']}</td>
-                                    </tr>
-                                    <tr>
-                                    <td><strong>Location:</strong></td>
-                                    <td>{$row['Building']}/{$row['Floor_No']}/{$row['Seat_No']}</td>
-                                    </tr>";
-                                    ?>                               
-                                    </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                        <div class="panel-footer">
-
-                        </div>
-                    </div>
-                </div>
-            </div> 
+          
 
            <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">My Items</h1>
+                    <h1 class="page-header">Issues Raised</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -238,46 +195,41 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Items in IT Store
+                            History of Issues raised
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        
-                                <thead>
-                                <th><strong>Hardware Type</strong></th>
-                                <th><strong>Model No</strong></th>
-                                <th><strong>Item No</strong></th>
-                                <th><strong>Quantity</strong></th>
-                                <th><strong>Date Of Allocation</strong></th>
-                                <th><strong>Period Of Allocation</strong></th>
-                                <th><strong>Warranty Date</strong></th>
-                                <th><strong></strong></th>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    
+                                        <?php
                                             $con=mysql_connect("localhost","root","");
                                             $db=mysql_select_db("aai",$con);
                                             $query1="select HW_Type,Model_No,Item_No,Quantity,Date_of_All,Period_of_All,Warranty_Date from employee_items where Employee_ID= '$var'";
                                             $run1=mysql_query($query1);
-                                        
-                                        while($row1=mysql_fetch_array($run1))
-                                        {
-                                           echo "<tr>
-                                                <td>{$row1['HW_Type']}</td>
-                                                <td>{$row1['Model_No']}</td>
-                                                <td>{$row1['Item_No']}</td>
-                                                <td>{$row1['Quantity']}</td>
-                                                <td>{$row1['Date_of_All']}</td>
-                                                <td>{$row1['Period_of_All']}</td>
-                                                <td>{$row1['Warranty_Date']}</td>
-                                                <td><a href='reallocate.php?var=$row[Employee_ID]'><input type='button' name='reallocate' value='Reallocate'></a>
-                                                <a href='move.php?var=$row[Employee_ID]'><input type='button' name='move' value='Move'></a></td>
-                                                </tr>";
-                                        }
                                         ?>
+                                <thead>
+                                <tr>
+								<th>HW_Type</th>
+								<th>Model No</th>
+								<th>Item No</th>
+								<th>Date</th>
+								<th>Issue</th>
+								</tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+										while($row=mysql_fetch_array($run))
+										{
+											echo "<tr>
+											<td>{$row['Hardware_Type']}</td>
+											<td>{$row['Model_no']}</td>
+											<td>{$row['Item_no']}</td>
+											<td>{$row['Date']}</td>
+											<td>{$row['Issue']}</td>
+											</tr>";
+										}
+									?>
                                 </tbody>
+
                             </table>
                             <!-- /.table-responsive -->
                         </div>
@@ -287,8 +239,13 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-             
+           <div class="row">
+                   <div class="col-lg-2 col-lg-offset-4">
+                      <a href="client.php"><input class="btn btn-lg btn-primary btn-block" type="submit" name="Home" value="Home"></a>
+                      </div>
+                </div>  
         </div>
+         
     </div>
     <!-- /#wrapper -->
     

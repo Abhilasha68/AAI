@@ -203,17 +203,17 @@
                                         while($row=mysql_fetch_array($run))
                                         {
                                             echo "<tr>
-                                                <td>{$row['Supplier_Name']}</td>
-                                                <td>{$row['Supplier_ID']}</td>
-                                                <td>{$row['HW_Type']}</td>
-                                                <td>{$row['Quantity']}</td>
-                                                <td>{$row['Balance Quantity']}</td>
-                                                <td>{$row['Date']}</td>
-                                                <td>{$row['POI']}</td>
-                                                <td>{$row['Receipt']}</td>
-                                                <td>{$row['Model_No']}</td>
-                                                </tr>\n";
-                                        }
+                                            <td>{$row['Supplier_Name']}</td>
+                                            <td>{$row['Supplier_ID']}</td>
+                                            <td><a href='hardware.php?value=$row[HW_Type]'>{$row['HW_Type']}</a></td>
+                                            <td>{$row['Quantity']}</td>
+                                            <td>{$row['Balance Quantity']}</td>
+                                            <td>{$row['Date']}</td>
+                                            <td>{$row['POI']}</td>
+                                            <td>{$row['Receipt']}</td>
+                                            <td>{$row['Model_No']}</td>
+                                            </tr>\n";
+                                    }
                                         ?>
                                 </tbody>
                             </table>

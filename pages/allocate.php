@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>EMPLOYEE</title>
+    <title>ADMIN</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,16 +39,6 @@
 </head>
 
 <body>
-<?php
-    session_start();
-    $var=$_SESSION['emp_id'];
-    $_SESSION['emp_id']=$var;
-    $con=mysql_connect("localhost","root","");
-    $db=mysql_select_db("aai",$con);
-    $query = "select Name,Employee_ID,Building , Floor_No, Seat_No from employee_table where Employee_ID='$var'";
-    $run=mysql_query($query);
-    $row=mysql_fetch_array($run);
- ?>
 
     <div id="wrapper">
 
@@ -61,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Airports Authority of India</a>
+                <a class="navbar-brand">Airports Authority of India</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -160,138 +150,110 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="requestsupp.html"><i class="fa fa-table fa-fw"></i>Request Item</a>
+                            <a href="store.php"><i class="fa fa-table fa-fw"></i>IT Store</a>
                         </li>
                         <li>
-                            <a href="issue.php"><i class="fa fa-table fa-fw"></i> Raise an issue</a>
+                            <a href="fixissue.php"><i class="fa fa-table fa-fw"></i> Fix issues</a>
                         </li>
                         <li>
-                            <a href="history.php"><i class="fa fa-table fa-fw"></i> History of issues</a>
+                            <a href="allocate.php"><i class="fa fa-table fa-fw"></i> Allocate/Reallocate Requests</a>
                         </li>
+                        <li>
+                            <a href="move_admin.php"><i class="fa fa-table fa-fw"></i> Movement Request</a>
+                        </li>
+                        <li>
+                            <a href=".php"><i class="fa fa-table fa-fw"></i> Warrenty Alarm</a>
+                        </li>
+                                                <li>
+                            <a href=".php"><i class="fa fa-table fa-fw"></i> Reallocation Alarm</a>
+                        </li>
+                      
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
 
-
-       <div id="page-wrapper">
-       <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"></h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-offset-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Client Details
-                        </div>
-                        <div class="panel-body">
-                            
-
-                        <div class="col-lg-8 col-md-offset-2">
-                    <!--<div class="panel panel-default">-->
-                        
-                        <!-- /.panel-heading -->
-                        <!--<div class="panel-body">-->
-                            <div class="table-responsive">
-
-                                <table class="table">
-                                   <?php
-                                   echo "<tr>
-                                    <td><strong>Name:</strong></td>
-                                    <td>{$row['Name']}</td>
-                                    </tr>
-                                    <tr>
-                                    <td><strong>Employee ID:</strong></td>
-                                    <td>{$row['Employee_ID']}</td>
-                                    </tr>
-                                    <tr>
-                                    <td><strong>Location:</strong></td>
-                                    <td>{$row['Building']}/{$row['Floor_No']}/{$row['Seat_No']}</td>
-                                    </tr>";
-                                    ?>                               
-                                    </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                        <div class="panel-footer">
-
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
+        <div id="page-wrapper">
            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">My Items</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Items in IT Store
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                        
-                                <thead>
-                                <th><strong>Hardware Type</strong></th>
-                                <th><strong>Model No</strong></th>
-                                <th><strong>Item No</strong></th>
-                                <th><strong>Quantity</strong></th>
-                                <th><strong>Date Of Allocation</strong></th>
-                                <th><strong>Period Of Allocation</strong></th>
-                                <th><strong>Warranty Date</strong></th>
-                                <th><strong></strong></th>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    
-                                            $con=mysql_connect("localhost","root","");
-                                            $db=mysql_select_db("aai",$con);
-                                            $query1="select HW_Type,Model_No,Item_No,Quantity,Date_of_All,Period_of_All,Warranty_Date from employee_items where Employee_ID= '$var'";
-                                            $run1=mysql_query($query1);
-                                        
-                                        while($row1=mysql_fetch_array($run1))
-                                        {
-                                           echo "<tr>
-                                                <td>{$row1['HW_Type']}</td>
-                                                <td>{$row1['Model_No']}</td>
-                                                <td>{$row1['Item_No']}</td>
-                                                <td>{$row1['Quantity']}</td>
-                                                <td>{$row1['Date_of_All']}</td>
-                                                <td>{$row1['Period_of_All']}</td>
-                                                <td>{$row1['Warranty_Date']}</td>
-                                                <td><a href='reallocate.php?var=$row[Employee_ID]'><input type='button' name='reallocate' value='Reallocate'></a>
-                                                <a href='move.php?var=$row[Employee_ID]'><input type='button' name='move' value='Move'></a></td>
-                                                </tr>";
-                                        }
-                                        ?>
-                                </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.panel-body -->
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Allocation Form</h3>
                     </div>
-                    <!-- /.panel -->
+                    <div class="panel-body">
+                        <form role="form" action="allocate.php" method="POST">
+                            <fieldset>
+                            <div class="row">
+                                <div class="form-group">
+                                <label>Employee Id</label>
+                                    <input class="form-control" placeholder="Employee id" name="emp_id" type="varchar" id='emp_id' maxlength="50" autofocus>
+                                </div>
+
+                               <div class="form-group">
+                                            <label>Hardware Type</label>
+                                            <select class="form-control" name='hardware' maxlength="50">
+                                                <option>Computer</option>
+                                                <option>Printer</option>
+                                                <option>Scanner</option>
+                                                <option>Mouse</option>
+                                                <option>KeyBoard</option>
+                                                <option>CPU</option>
+                                                <option>Monitor</option>
+                                                <option>Fax Machine</option>
+                                                <option>Web Camera</option>
+                                                <option>Projector</option>
+                                                <option>other</option>
+                                            </select>
+                                        </div>
+
+                                <div class="form-group">
+                                <label>Model Number</label>
+                                    <input class="form-control" placeholder="Model Number " name="model" type="varchar" id='model' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Item number</label>
+                                    <input class="form-control" placeholder="Item number" name="item" type="varchar"  maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Quantity</label>
+                                    <input class="form-control" placeholder="Quantity" name="qty" type="number"  maxlength="50" autofocus>
+                                </div>
+
+                                <label>Period of Allocation</label>
+                                <div class="form-group">
+                                 <label>From</label><input class="form-control" placeholder="From" name="from" type="date" maxlength="50" autofocus>
+                                 <label>To</label><input class="form-control" placeholder="To" name="to" type="date" maxlength="50" autofocus>
+                                </div>
+
+
+                                <div class="form-group">
+                                <label>Warranty Period</label>
+                                    <input class="form-control" placeholder="Warranty" name="warranty" type="number"  maxlength="50" autofocus>
+                                </div>
+
+
+                                <div class="form-group">
+                                <label>Date</label>
+                                    <input class="form-control" placeholder="Date" name="date" type="date"  maxlength="50" autofocus>
+                                </div>
+
+
+
+                                
+                                <input class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Submit">
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-             
         </div>
     </div>
+    </div>
     <!-- /#wrapper -->
-    
+
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -321,3 +283,24 @@
 </body>
 
 </html>
+<?php
+$con=mysql_connect("localhost" , "root" , "");
+$db=mysql_select_db("aai" , $con);
+if(isset($_POST["submit"]))
+  {
+    $emp_id=$_POST["emp_id"];
+    $hardware=$_POST["hardware"];
+    $model=$_POST["model"];
+    $item=$_POST["item"];
+    $qty=$_POST["qty"];
+    $from=$_POST["from"];
+    $to=$_POST["to"];
+    $warranty=$_POST["warranty"];
+    $date=$_POST["date"];
+
+     if(($hardware=="") or ($emp_id=="") or ($qty<=0)or ($date=="") or ($model=="") or ($item=="") or ($from=="") or ($to=="")) 
+     {
+      echo "<script>alert('Please provide valid information!')</script>";
+     }
+ }
+?>
