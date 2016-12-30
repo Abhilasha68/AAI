@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2016 at 07:57 AM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Dec 29, 2016 at 06:44 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,7 +42,8 @@ CREATE TABLE `employee_items` (
 --
 
 INSERT INTO `employee_items` (`Employee_ID`, `HW_Type`, `Model_No`, `Item_No`, `Quantity`, `Date_of_All`, `Period_of_All`, `Warranty_Date`) VALUES
-('1003', 'Monitor', '654654', '87897', 1, '2016-12-12', '2', '2017-03-17');
+('1003', 'Monitor', '654654', '87897', 1, '2016-12-12', '2', '2017-03-17'),
+('1004', 'computer', '6514', '6184', 2, '2016-12-06', '2', '2016-12-23');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,7 @@ INSERT INTO `employee_table` (`Employee_ID`, `Name`, `Department`, `Email`, `Bui
 ('1001', 'Suresh', 'Airport Systems', 'sureshrana@gmail.com', 'AS', 'First Floor', '69', 'inventory'),
 ('1002', 'Raghav', 'Commercial', 'raghavsingh@gmail.com', 'Communication', '4th Floor', '12', 'client'),
 ('1003', 'Karan', 'Public Relations', 'karankashyap@gmail.com', 'PR', '3rd Floor', '54', 'client'),
-('1004', 'Shreya', 'Human Resource', 'shreyasharma@gmail.com', 'HR', '2nd Floor', '31', 'client'),
+('1004', 'Shreya', 'Human Resource', 'shreyasharma@gmail.com', '89', '45', '6', 'client'),
 ('1005', 'Aakriti', 'Law', 'aakriti1989@gmail.com', 'Law', 'Ground Floor', '71', 'client');
 
 -- --------------------------------------------------------
@@ -99,6 +100,33 @@ INSERT INTO `hardware` (`Hardware_Type`, `Model_No`, `Item_No`, `Employee_ID`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `Employee_ID` varchar(50) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Type` varchar(50) NOT NULL,
+  `Date` date NOT NULL,
+  `Hardware_type` varchar(50) DEFAULT NULL,
+  `issue` varchar(250) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`Employee_ID`, `Name`, `Type`, `Date`, `Hardware_type`, `issue`) VALUES
+('1003', 'Karan', 'issues', '2016-11-29', 'Keyboard', 'uukdhnilfsjf'),
+('1003', 'Karan', 'request', '2016-12-05', 'Scanner', NULL),
+('1000', 'Ramesh', 'request', '2016-11-30', 'Printer', NULL),
+('1004', 'shreya', 'move', '2016-12-22', NULL, NULL),
+('1005', 'akriti', 'move', '2016-12-05', NULL, NULL),
+('108', '61846', '6235', '2016-12-15', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `issue`
 --
 
@@ -119,7 +147,7 @@ CREATE TABLE `issue` (
 INSERT INTO `issue` (`Name`, `Employee_Id`, `Hardware_Type`, `Model_no`, `Item_no`, `Date`, `Issue`) VALUES
 ('shreya', '1004', 'Computer', '64564654', '2121', '2016-12-15', 'Give me something'),
 ('karan', '1003', 'Computer', '65465', '21321', '0000-00-00', 'vgftycdix'),
-('shreya', '1004', 'Computer', '2132', '8789', '2016-12-20', 'Hello whats up');
+('Karan', '1003', 'Keyboard', '92282', '29856', '2016-11-29', 'uukdhnilfsjf');
 
 -- --------------------------------------------------------
 
@@ -195,7 +223,6 @@ CREATE TABLE `move` (
 --
 
 INSERT INTO `move` (`Employee_ID`, `Name`, `Old_Building`, `Old_Floor`, `Old_Seat`, `New_Building`, `New_Floor`, `New_Seat`, `Date`) VALUES
-('1004', 'Shreya', '646468', '1321', '98798', '89', '45', '6', '2016-12-14'),
 ('1005', 'Akriti', '65', '32132', '78', '41', '87', '23', '2016-12-11');
 
 -- --------------------------------------------------------
@@ -248,7 +275,11 @@ INSERT INTO `request` (`Name`, `Employee_Id`, `Hardware Type`, `Qty`, `Date`) VA
 ('shreya', '1004', 'Computer', 2, '0000-00-00'),
 ('karan', '1003', 'Mouse', 1, '2016-12-13'),
 ('karan', '1003', 'Computer', 123213, '2016-12-18'),
-('karan', '1003', 'Computer', 123213, '2016-12-18');
+('karan', '1003', 'Computer', 123213, '2016-12-18'),
+('Karan', '1003', 'Scanner', 1, '2016-12-05'),
+('Karan', '1003', 'Scanner', 1, '2016-12-05'),
+('Karan', '1003', 'Scanner', 1, '2016-12-05'),
+('Ramesh', '1000', 'Printer', 5, '2016-11-30');
 
 --
 -- Indexes for dumped tables

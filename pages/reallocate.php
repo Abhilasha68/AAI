@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Client- request item</title>
+    <title>Client</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,13 +40,13 @@
 
 <body>
 <?php
-            $con=mysql_connect("localhost", "root" , "");
-            $db=mysql_select_db("aai",$con);
-            session_start();
-            $emp_id=$_SESSION["emp_id"];
-            $q="select Name,Employee_ID from employee_table where Employee_ID=$emp_id";
-            $r=mysql_query($q);
-            $ro=mysql_fetch_array($r);
+$con=mysql_connect("localhost", "root" , "");
+$db=mysql_select_db("aai",$con);
+session_start();
+$emp_id=$_SESSION["emp_id"];
+$query="SELECT Employee_ID from employee_table Where Employee_ID=$emp_id";
+$run=mysql_query($query)or die(mysql_error());
+$row=mysql_fetch_array($run);
 ?>
 
     <div id="wrapper">
@@ -173,29 +173,24 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        
 
         <div id="page-wrapper">
            <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Request Item</h3>
+                        <h3 class="panel-title">Reallocation Form</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="request.php" method="POST">
+                        <form role="form" action="reallocate.php" method="POST">
                             <fieldset>
                             <div class="row">
 
                                 <div class="form-group">
-                                <label>Name</label>
-                                    <input class="form-control" placeholder="Employee id" name="name" type="text" id='name' value=<?php echo $ro['Name'];?> maxlength="50" autofocus>
+                                <label>Employee Id</label>
+                                    <input class="form-control" placeholder="Employee id" name="emp_id" type="varchar" value=<?php echo $row['Employee_ID'];?> id='emp_id' maxlength="50" autofocus>
                                 </div>
 
-                                <div class="form-group">
-                                <label>Employee Id</label>
-                                    <input class="form-control" placeholder="Employee id" name="emp_id" type="varchar" id='emp_id' value=<?php echo $ro['Employee_ID'];?> maxlength="50" autofocus>
-                                </div>
 
                                <div class="form-group">
                                             <label>Hardware Type</label>
@@ -210,15 +205,31 @@
                                                 <option>Fax Machine</option>
                                                 <option>Web Camera</option>
                                                 <option>Projector</option>
-                                                <option>other</option>
+                                                <option>Other</option>
                                             </select>
-                                        </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                <label>Model Number</label>
+                                    <input class="form-control" placeholder="Model Number " name="model" type="varchar"  id='model' maxlength="50" autofocus>
+                                </div>
+
+                                <div class="form-group">
+                                <label>Item number</label>
+                                    <input class="form-control" placeholder="Item number" name="item" type="varchar"   maxlength="50" autofocus>
+                                </div>
+
 
                                 <div class="form-group">
                                 <label>Quantity</label>
-                                    <input class="form-control" placeholder="Quantity " name="qty" type="varchar" id='qty' maxlength="50" autofocus>
+                                    <input class="form-control" placeholder="Quantity" name="qty" type="number"  maxlength="50" autofocus>
                                 </div>
 
+                                <div class="form-group">
+                                 <label>Period of Allocation</label>
+                                 <input class="form-control" placeholder="(In Months)" name="period" type="number" maxlength="50" autofocus>
+                                </div>
 
                                 <div class="form-group">
                                  <label>Date</label>
@@ -271,29 +282,28 @@
 </body>
 
 </html>
+
 <?php
 if(isset($_POST["Submit"]))
-  {  
-    $name=$_POST["name"];
-    $emp_id=$_POST["emp_id"];   
+  {
+    $emp_id=$_POST["emp_id"];
     $hardware=$_POST["hardware"];
+    $model=$_POST["model"];
+    $item=$_POST["item"];
     $qty=$_POST["qty"];
+    $period=$_POST["period"];
     $date=$_POST["date"];
-    $ht="request";
 
-     if(($name=="") or ($emp_id=="") or ($qty<=0)or ($date==""))
+     if(($hardware=="") or ($emp_id=="") or ($qty<=0)or ($date=="") or ($model=="") or ($item=="") or ($period=="")) 
      {
         echo "<script>alert('Please provide valid information!')</script>";
+
      }
      else
-     {   $query="SELECT Name from employee_table Where Employee_ID=$emp_id";
-           $query1= "INSERT INTO request VALUES('$name' , '$emp_id' , '$hardware' , '$qty' , '$date')";
-         $query2= "INSERT INTO history(Employee_ID , Name , Type , Date , Hardware_type) VALUES( '$emp_id' ,'$name'  , '$ht' , '$date' , '$hardware' )";
-         $run=mysql_query($query)or die(mysql_error());
-         $run1=mysql_query($query1) or die (mysql_error());
-         $run2=mysql_query($query2) or die (mysql_error());
-         echo "<script>alert('Thankyou ! Please check after one week')</script>";
+     {
+        $query1= "INSERT into reallocate values('$emp_id', '$hardware', '$model', '$item', '$qty', '$period', '$date' )";
+        $run = mysql_query($query1);
+         echo "<script>window.open('client.php' , '_self')</script>";
      }
-  }
-
+ }
 ?>
